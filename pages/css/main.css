@@ -1,5 +1,5 @@
 * {
-  margin: 0;
+	margin: 0;
 }
 
 html ,body{
@@ -16,22 +16,16 @@ body {
 
 .wrapper{
 	position: relative;
-	background-image: url('../images/data.png');
-	background-repeat: no-repeat;
-    background-size: cover;
+	background-image: url('../images/figures.jpg');
 	min-height: 100%;
 	margin: 0 auto -75px; 
-}
-
-.nav, .footer {
-	display: block;
 }
 
 .nav {
     padding-top: 15px;
     padding-right: 15px;
     position: relative;
-	background-color: #e5e5e5;
+	background-color: #ddd;
 }
 
 .nav a {
@@ -47,49 +41,51 @@ body {
     display: inline;
 }
 
+.page-header {
+	margin: 0;
+}
+
 .content {
     background-color: #f1f1f1;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	border-radius: 5px;
+	padding: 15px;	
 }
-.sections-top{
+.sections{
     background-color: #fff;
-	margin-top: 15px;	
     padding-top: 5px;
+	padding-bottom: 5px;
     text-align: center;
-	border-radius: 5px 5px 0 0;	
+	border-radius: 5px;	
 }
-.sections-top a {
+.sections a {
     color: #5a5a5a;
     vertical-align: middle;
     font-size: 16px;
     font-weight: bold;
     text-transform: uppercase;
 }
-
-.sections-bottom{
-    background-color: #fff;	
-	text-align: center;
-	margin-bottom: 15px;
-	padding: 5px;
-	border-radius: 0 0 5px 5px;	
-}
 .section {
 	margin-top: 5px;
 	margin-bottom: 5px;
-	background-color: #e5e5e5;
-	background-image: none;
-	border-color:  #fff;
-	color: #5a5a5a;
 }
 
 .form {
-	
-	left: 35%;
-    margin-right: -50%;
 	margin-top: 35px;
 	margin-bottom: 35px;
+}
+
+textarea {
+	resize: vertical;
+}
+
+.comment-header {
+	margin: 0 15px 5px 15px;
+}
+
+.avatar-sm {
+	height: 120px;
 }
 
 .jumbotron {
