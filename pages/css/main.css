@@ -1,0 +1,140 @@
+* {
+  margin: 0;
+}
+
+html ,body{
+	height: 100%;
+}
+
+body {
+    background-color: #656565;
+}
+
+.row-fluid {
+    overflow: hidden;
+}	
+
+.wrapper{
+	position: relative;
+	background-image: url('../images/data.png');
+	background-repeat: no-repeat;
+    background-size: cover;
+	min-height: 100%;
+	margin: 0 auto -75px; 
+}
+
+.nav, .footer {
+	display: block;
+}
+
+.nav {
+    padding-top: 15px;
+    padding-right: 15px;
+    position: relative;
+	background-color: #e5e5e5;
+}
+
+.nav a {
+    color: #5a5a5a;
+    vertical-align: middle;
+    font-size: 13px;
+    font-weight: bold;
+    padding-right: 10px;
+    text-transform: uppercase;
+}
+
+.nav li {
+    display: inline;
+}
+
+.content {
+    background-color: #f1f1f1;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+}
+.sections-top{
+    background-color: #fff;
+	margin-top: 15px;	
+    padding-top: 5px;
+    text-align: center;
+	border-radius: 5px 5px 0 0;	
+}
+.sections-top a {
+    color: #5a5a5a;
+    vertical-align: middle;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.sections-bottom{
+    background-color: #fff;	
+	text-align: center;
+	margin-bottom: 15px;
+	padding: 5px;
+	border-radius: 0 0 5px 5px;	
+}
+.section {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	background-color: #e5e5e5;
+	background-image: none;
+	border-color:  #fff;
+	color: #5a5a5a;
+}
+
+.form {
+	
+	left: 35%;
+    margin-right: -50%;
+	margin-top: 35px;
+	margin-bottom: 35px;
+}
+
+.jumbotron {
+	background-color: transparent;
+	margin: 0;
+}
+
+
+.jumbotron .container {
+    position: relative;
+    top: 40px;
+    text-align: right;
+}
+
+.jumbotron h1 {
+    color: #fff;
+    font-size: 48px;
+    font-family: 'Shift', sans-serif;
+    font-weight: bold;
+}
+
+.jumbotron p {
+    font-size: 20px;
+    color: #fff;
+}
+
+.jumbotron a {
+    font-size: 18px;
+    color: #b1bcd5;
+}
+
+.footer, .push {
+	height: 75px; 
+}
+.footer{
+	position: relative;
+	margin: 0 auto;
+    background-color: #fff;
+}
+
+.footer a{
+	padding-right: 10px;
+}
+
+.footer .container {
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
