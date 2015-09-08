@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <div class="wrapper row-fluid main-body ">
+        <div class="navbar navbar-default navbar-fixed-top	">
+            <div class="container">
+                <div class="navbar-header">
+                    <a href="#" class="navbar-brand"><img class="logo" src="~/Content/images/Forum-grey-icon.png" alt="Forum"></a>
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+                        <span class="icon-bar">@*@Html.ActionLink("Users", "Index", "User")*@</span>
+                        <span class="icon-bar">@*@Html.ActionLink("Sections", "Index", "Section")*@</span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse" id="navbar-main">  
+                    @Html.Partial("_LoginPartial")
+                </div>
+            </div>
+        </div>
+
+        @RenderBody()
+
+        <div class="push"></div>
+    </div>
+    <div class="row-fluid footer">
+        <div class="container">
+            <div class="pull-left">Copyright © 2015<br>Hello to everyone</div>
+            <a href="#" class="pull-right"><img class="logo" src="~/Content/images/Facebook-grey-icon.png" alt="Facebook"></a>
+            <a href="#" class="pull-right"><img class="logo" src="~/Content/images/Twitter-grey-icon.png" alt="Twitter"></a>
+            <a href="#" class="pull-right"><img class="logo" src="~/Content/images/GooglePlus-grey-icon.png" alt="GooglePlus"></a>
+            <a href="#" class="pull-right"><img class="logo" src="~/Content/images/Rss-grey-icon.png" alt="Rss"></a>
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/js")
+    
+    @RenderSection("scripts", required: false)
+</body>
+</html>

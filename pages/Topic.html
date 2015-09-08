@@ -8,22 +8,39 @@
 
 <body>
 <div class="wrapper row-fluid main-body ">
-
-        <div class="nav" >
-            <ul class="pull-left">
-                <li><a href="Index.html">Forum</a></li>
-                <li><a href="#">Users</a></li>
-                <li><a href="#">Chat</a></li>
-            </ul>
-            <ul class="pull-right">
-                <li><a href="Messages.html"><span class="glyphicon glyphicon-envelope"></span> <span class="badge">2</span></a></li>
-				<li><a href="Profile.html"><span class="glyphicon glyphicon-user"></span> Jack</a></li>
-                <li><a href="LogOut.html">log out</a></li>
-            </ul>
+		
+        <div class="navbar navbar-default navbar-fixed-top	" >
+			<div class="container" >
+				<div class="navbar-header">
+					<a href="Index.html" class="navbar-brand"><img class="logo" src="images/Forum-grey-icon.png" alt="Forum"></a>
+					<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-main">
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+				</div>
+				<div class="navbar-collapse collapse" id="navbar-main">
+					<ul class="nav navbar-nav">
+						<li><a href="#">Users</a></li>
+						<li><a href="#">Chat</a></li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="Messages.html"><span class="glyphicon glyphicon-envelope"></span> <span class="badge">2</span></a></li>
+						<li><a href="Profile.html"><span class="glyphicon glyphicon-user"></span> Jack</a></li>
+						<li><a href="LogOut.html">log out</a></li>
+					</ul>
+				</div>
+			</div>
         </div>
 		<div class="container content">		
 			<div class="page-header">
-				<h1><small><a href="#">Music</a></small> | What else is there?</h1>
+				<h1><small><a href="#">Music</a></small> | What else is there?
+				<small>
+					<a  href="#" data-toggle="popover" data-trigger="hover"  data-content="Follow the conversation">
+					<span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a>
+				</small>
+				</h1> 
+				
 			</div>
 		</div>
 		<div class="container content">
@@ -41,7 +58,7 @@
 				<a href="#">Jack</a><br>
 				Role: User<br>
 				Topics: <a href="#">13</a><br>
-				Raiting: <a href="#">+5</a><br>
+				Sex: Male
 				</div>
 			</div>
 			<div class="col-md-10 comment-body">
@@ -54,6 +71,30 @@
 			
 		</div>
 		<div class="container content">
+			<div class="row-fluid comment-header">
+				<div class="pull-left">11:11 11-11-11</div>
+				<div class="pull-right">
+					<a href="#"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a> 0 
+					<a href="#"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a> 0
+				</div>
+			</div>
+			<div class="col-md-2 comment-body">
+				<div class="well">
+				<img src="images/foto.jpg" alt="Foto" class="img-rounded avatar-sm"><br>
+				<a href="#">Jack</a><br>
+				Role: User<br>
+				Topics: <a href="#">13</a><br>
+				Sex: Male
+				</div>
+			</div>
+			<div class="col-md-10 comment-body">
+				<div class="well">
+					The C# specification states that the runtime is permitted broad latitude to detect when storage containing a reference is never going to be accessed again, and to stop treating that storage as a root of the garbage collector. For example, suppose we have a local variable foo and a reference is written into it at the top of the block. If the jitter knows that a particular read is the last read of that variable, the variable can legally be removed from the set of GC roots immediately; it doesn’t have to wait until control leaves the scope of the variable. If that variable contained the last reference then the GC can detect that the object is unreachable and put it on the finalizer queue immediately. Use GC.KeepAlive to avoid this.
+				</div>
+				<div class="pull-right"><a href="#">Answer</a></div>
+			</div>
+		</div>
+		<div id="comment-form" class="container content">
 			<form>
 				<div class="form-group">
 					<label>Your comment</label>
@@ -68,9 +109,10 @@
 <div class="row-fluid footer">
 		<div class="container">
 			<div class="pull-left">Copyright © 2015<br>Hello to everyone</div>
-            <a href="#" class="pull-right">Facebook</a>
-			<a href="#" class="pull-right">Twitter</a>
-			<a href="#" class="pull-right">Google+</a>
+            <a href="#" class="pull-right"><img class="logo" src="images/Facebook-grey-icon.png" alt="Facebook"></a>
+			<a href="#" class="pull-right"><img class="logo" src="images/Twitter-grey-icon.png" alt="Twitter"></a>
+			<a href="#" class="pull-right"><img class="logo" src="images/GooglePlus-grey-icon.png" alt="GooglePlus"></a>
+			<a href="#" class="pull-right"><img class="logo" src="images/Rss-grey-icon.png" alt="Rss"></a>
 		</div>
 </div>
 

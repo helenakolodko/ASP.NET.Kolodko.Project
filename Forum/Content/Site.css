@@ -1,0 +1,201 @@
+﻿* {
+	margin: 0;
+}
+
+html ,body{
+	height: 100%;
+}
+
+body {
+    background-color: #656565;
+	padding-top: 40px;
+}
+
+.row-fluid {
+    overflow: hidden;
+}	
+
+.wrapper{
+	position: relative;
+	background-image: url('/Content/images/figures-color.jpg');
+	min-height: 100%;
+	margin: 0 auto -75px; 
+}
+
+.navbar {
+	background-color: #ddd;
+}
+
+.navbar-brand{
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+
+.navbar a {
+    color: #5a5a5a;
+    font-size: 13px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.navbar-nav > li > a, .navbar-brand {
+    padding-top:10px !important; 
+    padding-bottom:10px !important;
+    height: 40px;
+}
+
+.navbar {
+	min-height:40px !important;
+	border-width: 0;
+}
+
+.page-header {
+	margin: 0;
+}
+
+.content {
+    background-color: #f1f1f1;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	border-radius: 5px;
+	padding: 15px;	
+}
+
+.btn-info {
+	background-color: #aeaeae;
+	border-color:  #9c9c9c;
+}
+
+.sections{
+    text-align: center;
+	border-radius: 5px;	
+}
+.content h4 {
+	margin-top: 0;
+	margin-bottom: 5px;
+    text-transform: uppercase;
+}
+
+.well{
+	background-color: #f9f9f9;
+}
+
+.form {
+	margin-top: 35px;
+	margin-bottom: 35px;
+}
+
+textarea {
+	resize: vertical;
+}
+
+.comment-header {
+	margin: 0 15px 5px 15px;
+}
+
+.avatar-sm {
+	height: 120px;
+	margin-bottom: 15px;
+}
+
+.jumbotron {
+	background-color: transparent;
+	margin: 0;
+}
+
+
+.jumbotron .container {
+    position: relative;
+    top: 40px;
+    text-align: right;
+}
+
+.jumbotron h1 {
+    color: #fff;
+    font-size: 48px;
+    font-family: 'Shift', sans-serif;
+    font-weight: bold;
+	text-shadow: 3px 3px 7px rgba(70, 70, 70, 1);
+}
+
+.jumbotron p {
+    font-size: 20px;
+    color: #fff;
+	text-shadow: 3px 3px 7px rgba(70, 70, 70, 1);
+}
+
+.jumbotron a {
+    font-size: 18px;
+    color: #b1bcd5;
+	text-shadow: 4px 4px 5px #656565;
+}
+
+.footer, .push {
+	height: 75px; 
+}
+.footer{
+	position: relative;
+	margin: 0 auto;
+    background-color: #fff;
+}
+
+.footer a{
+	padding-right: 10px;
+}
+
+.footer .container {
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    min-height: 75px;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}
