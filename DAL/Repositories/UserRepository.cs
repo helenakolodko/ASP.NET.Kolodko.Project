@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Collections.Generic;
+using System.Linq;
+using DAL.Mappers;
 using DAL.Interface;
 using DAL.Interface.Entities;
 using ORM.Entities;
@@ -18,25 +20,13 @@ namespace DAL.Repositories
 
         public IEnumerable<DalUser> GetAll()
         {
-            return new List<DalUser>();
-                //context.Set<User>().Select(user => new DalUser()
-                //{
-                //    Id = user.Id,
-                //    Username = user.Username,
-                //    Email = user.Email
-                        
-                //});
+            return context.Set<User>().Select(user => user.ToDalUser());
         }
 
         public DalUser GetById(int id)
         {
-           // var ormuser = context.Set<User>().FirstOrDefault(user => user.Id == key);
-            return new DalUser()
-                {
-                   // Id = ormuser.Id,
-                   // Username = ormuser.Username
-
-                };
+            var ormUser = context.Set<User>().FirstOrDefault(user => user.Id == id);
+            return ormUser.ToDalUser();
         }
 
         public DalUser GetByPredicate(System.Linq.Expressions.Expression<Func<DalUser, bool>> predicate)
@@ -44,19 +34,25 @@ namespace DAL.Repositories
             throw new NotImplementedException();
         }
 
-        public void Add(DalUser entity)
+        public int Add(DalUser entity)
         {
-            throw new NotImplementedException();
+            var user = entity.ToUser();
+            context.Set<User>().Add(user);
+            context.SaveChanges();
+            return user.Id;
         }
 
         public void Delete(DalUser entity)
         {
-            throw new NotImplementedException();
+            User ormUser = entity.ToUser();
+            
+            context.Set<User>().Remove(ormUser);
         }
 
         public void Update(DalUser entity)
         {
-            throw new NotImplementedException();
+            User ormUser = entity.ToUser();
+            context.Entry(ormUser).State = EntityState.Modified;
         }
     }
 }

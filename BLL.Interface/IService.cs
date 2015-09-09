@@ -10,7 +10,8 @@ namespace BLL.Interface
     {
         T GetEntity(int id);
         IEnumerable<T> GetAllEntities();
-        void Create(T entity);
-        void Delete(T entity);   
+        int Create(T entity);
+        void Delete(T entity);
+        void Update(T entity);   
     }
 }

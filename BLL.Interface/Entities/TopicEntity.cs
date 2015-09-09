@@ -11,7 +11,7 @@ namespace BLL.Interface.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public int UserId { get; set; }
-        public int SectionId { get; set; }
+        public int? SectionId { get; set; }
         public DateTime DateAdded { get; set; }
     }
 }

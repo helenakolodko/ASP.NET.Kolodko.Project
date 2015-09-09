@@ -1,42 +1,36 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace ORM.Entities
 {
-    [Table("Comments")]
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
     public partial class Comment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Comment()
         {
-            Votes = new HashSet<Vote>();
+            CommentVotes = new HashSet<CommentVote>();
         }
 
-        [Key]
         public int Id { get; set; }
 
-        [Required]
+        public int AuthorId { get; set; }
+
         public int TopicId { get; set; }
 
-        [ForeignKey("TopicId")]
-        public virtual Topic Topic { get; set; }
-
-        [Required]
-        public int UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public virtual User Author { get; set; }
-
-        [Required]
+        [Column(TypeName = "date")]
         public DateTime DateAdded { get; set; }
 
         [Required]
         public string Text { get; set; }
 
-        public virtual ICollection<Vote> Votes { get; set; }
+        public virtual User User { get; set; }
+
+        public virtual Topic Topic { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentVote> CommentVotes { get; set; }
     }
 }

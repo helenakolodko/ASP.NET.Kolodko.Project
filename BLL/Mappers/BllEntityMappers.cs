@@ -161,27 +161,5 @@ namespace BLL.Mappers
             };
         }
         #endregion Comment Mappers
-
-        #region Votes Mappers
-        public static DalVote ToDalVote(this VoteEntity voteEntity)
-        {
-            return new DalVote()
-            {
-                Id = voteEntity.Id,
-                UserId = voteEntity.UserId,
-                Up = voteEntity.Up,
-            };
-        }
-
-        public static VoteEntity ToBllVote(this DalVote dalVote)
-        {
-            return new VoteEntity()
-            {
-                Id = dalVote.Id,
-                UserId = dalVote.UserId,
-                Up = dalVote.Up,
-            };
-        }
-        #endregion Votes Mappers
     }
 }

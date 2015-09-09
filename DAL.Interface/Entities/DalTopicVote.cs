@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Interface.Entities
 {
-    public class DalVote: IDalEntity
+    public class DalTopicVote
     {
-        public int Id { get; set; }
         public int UserId { get; set; }
+        public int TopicId { get; set; }
         public bool Up { get; set; }
     }
 }

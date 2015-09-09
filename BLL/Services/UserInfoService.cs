@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BLL.Interface;
 using BLL.Interface.Entities;
+using BLL.Mappers;
 using DAL.Interface.Entities;
 using DAL.Interface;
 
@@ -13,26 +14,42 @@ namespace BLL.Services
     public class UserInfoService: IService<UserInfoEntity>
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly IRepository<UserEntity> userInfoRepository;
+        private readonly IRepository<DalUserInfo> userInfoRepository;
+
+        public UserInfoService(IUnitOfWork unitOfWork, IRepository<DalUserInfo> repository)
+        {
+            this.unitOfWork = unitOfWork;
+            this.userInfoRepository = repository;
+        }
 
         public UserInfoEntity GetEntity(int id)
         {
-            throw new NotImplementedException();
+            return userInfoRepository.GetById(id).ToBllUserInfo();
         }
 
         public IEnumerable<UserInfoEntity> GetAllEntities()
         {
-            throw new NotImplementedException();
+            return userInfoRepository.GetAll().Select(info => info.ToBllUserInfo());
         }
 
-        public void Create(UserInfoEntity entity)
+        public int Create(UserInfoEntity entity)
         {
-            throw new NotImplementedException();
+            int id = userInfoRepository.Add(entity.ToDalUserInfo());
+            unitOfWork.Commit();
+            return id;
         }
 
         public void Delete(UserInfoEntity entity)
         {
-            throw new NotImplementedException();
+            userInfoRepository.Delete(entity.ToDalUserInfo());
+            unitOfWork.Commit();
+        }
+
+
+        public void Update(UserInfoEntity entity)
+        {
+            userInfoRepository.Update(entity.ToDalUserInfo());
+            unitOfWork.Commit();
         }
     }
 }

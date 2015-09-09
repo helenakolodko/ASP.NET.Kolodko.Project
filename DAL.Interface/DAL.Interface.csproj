@@ -52,12 +52,14 @@
     <Compile Include="Entities\DalRole.cs" />
     <Compile Include="Entities\DalSection.cs" />
     <Compile Include="Entities\DalTopic.cs" />
+    <Compile Include="Entities\DalCommentVote.cs" />
     <Compile Include="Entities\DalUser.cs" />
     <Compile Include="Entities\DalUserInfo.cs" />
-    <Compile Include="Entities\DalVote.cs" />
+    <Compile Include="Entities\DalTopicVote.cs" />
     <Compile Include="Entities\IDalEntity.cs" />
     <Compile Include="IRepository.cs" />
     <Compile Include="IUnitOfWork.cs" />
+    <Compile Include="IVoteRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

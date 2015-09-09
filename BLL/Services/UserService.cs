@@ -32,15 +32,23 @@ namespace BLL.Services
             return userRepository.GetAll().Select(user => user.ToBllUser());
         }
 
-        public void Create(UserEntity entity)
+        public int Create(UserEntity entity)
         {
-            userRepository.Add(entity.ToDalUser());
+            int id = userRepository.Add(entity.ToDalUser());
             unitOfWork.Commit();
+            return id;
         }
 
         public void Delete(UserEntity entity)
         {
             userRepository.Delete(entity.ToDalUser());
+            unitOfWork.Commit();
+        }
+
+
+        public void Update(UserEntity entity)
+        {
+            userRepository.Update(entity.ToDalUser());
             unitOfWork.Commit();
         }
     }

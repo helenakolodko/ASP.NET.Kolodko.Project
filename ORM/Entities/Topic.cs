@@ -1,44 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace ORM.Entities
 {
-    [Table("Topics")] 
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
     public partial class Topic
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Topic()
         {
             Comments = new HashSet<Comment>();
-            Votes = new HashSet<Vote>();
+            TopicVotes = new HashSet<TopicVote>();
         }
 
-        [Key]
         public int Id { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string Name { get; set; }
 
-        [Required]
-        public int UserId { get; set; }
+        public int AuthorId { get; set; }
 
-        [ForeignKey("UserId")] 
-        public virtual User Author { get; set; }
+        public int? SectionId { get; set; }
 
-        [Required]
-        public int SectionId { get; set; }
-
-        [ForeignKey("SectionId")] 
-        public virtual Section Section { get; set; }
-
-        [Required]
+        [Column(TypeName = "date")]
         public DateTime DateAdded { get; set; }
 
+        [Required]
+        public string Text { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Vote> Votes { get; set; }
+
+        public virtual Section Section { get; set; }
+
+        public virtual User User { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TopicVote> TopicVotes { get; set; }
     }
 }

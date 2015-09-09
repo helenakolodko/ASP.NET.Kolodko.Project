@@ -1,48 +1,55 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
 namespace ORM.Entities
 {
-    [Table("Users")]
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
+    using System.Data.Entity.Spatial;
+
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public User()
         {
-            Messages = new HashSet<Message>();
-            Topics = new HashSet<Topic>();
             Comments = new HashSet<Comment>();
+            CommentVotes = new HashSet<CommentVote>();
+            Topics = new HashSet<Topic>();
+            TopicVotes = new HashSet<TopicVote>();
             Roles = new HashSet<Role>();
         }
 
-        [Key]
         public int Id { get; set; }
 
         [Required]
-        public string Username { get; set; }
+        [StringLength(50)]
+        public string UserName { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string Email { get; set; }
 
         [Required]
+        [StringLength(50)]
         public string Password { get; set; }
 
-        public int? UserInfoId { get; set; }
-
-        [ForeignKey("UserInfoId")]
-        public virtual UserInfo Info { get; set; }
-
-        [Required]
+        [Column(TypeName = "date")]
         public DateTime DateAdded { get; set; }
 
-        public virtual ICollection<Role> Roles { get; set; }
-        public virtual ICollection<Topic> Topics { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Comment> Comments { get; set; }
-        public virtual ICollection<Message> Messages { get; set; }
-    
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CommentVote> CommentVotes { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Topic> Topics { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<TopicVote> TopicVotes { get; set; }
+
+        public virtual UserInfo UserInfo { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Role> Roles { get; set; }
     }
 }

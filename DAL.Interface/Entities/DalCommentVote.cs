@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BLL.Interface.Entities
+namespace DAL.Interface.Entities
 {
-    public class VoteEntity
+    public class DalCommentVote
     {
-        public int Id { get; set; }
         public int UserId { get; set; }
+        public int CommentId { get; set; }
         public bool Up { get; set; }
     }
 }

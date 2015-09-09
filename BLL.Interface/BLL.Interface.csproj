@@ -45,8 +45,8 @@
     <Compile Include="Entities\TopicEntity.cs" />
     <Compile Include="Entities\UserEntity.cs" />
     <Compile Include="Entities\UserInfoEntity.cs" />
-    <Compile Include="Entities\VoteEntity.cs" />
     <Compile Include="IService.cs" />
+    <Compile Include="IServiceWithRaiting.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

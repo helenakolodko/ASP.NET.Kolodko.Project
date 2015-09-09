@@ -16,7 +16,7 @@ namespace DAL.Mappers
             return new User()
             {
                 Id = dalUser.Id,
-                Username = dalUser.Username,
+                UserName = dalUser.Username,
                 Email = dalUser.Email,
                 Password = dalUser.Password,
                 DateAdded = dalUser.RegistryDate,                
@@ -28,7 +28,7 @@ namespace DAL.Mappers
             return new DalUser()
             {
                 Id = user.Id,
-                Username = user.Username,
+                Username = user.UserName,
                 Email = user.Email,
                 Password = user.Password,
                 RegistryDate = user.DateAdded,
@@ -117,7 +117,7 @@ namespace DAL.Mappers
             {
                 Id = talTopic.Id,
                 Name = talTopic.Name,
-                UserId = talTopic.UserId,
+                AuthorId = talTopic.UserId,
                 SectionId = talTopic.SectionId,
                 DateAdded = talTopic.DateAdded,
             };
@@ -129,7 +129,7 @@ namespace DAL.Mappers
             {
                 Id = topic.Id,
                 Name = topic.Name,
-                UserId = topic.UserId,
+                UserId = topic.AuthorId,
                 SectionId = topic.SectionId,
                 DateAdded = topic.DateAdded,
             };
@@ -143,7 +143,7 @@ namespace DAL.Mappers
             {
                 Id = dalComment.Id,
                 TopicId = dalComment.TopicId,
-                UserId = dalComment.UserId,
+                AuthorId = dalComment.UserId,
                 Text = dalComment.Text,
                 DateAdded = dalComment.DateAdded,
             };
@@ -155,33 +155,57 @@ namespace DAL.Mappers
             {
                 Id = comment.Id,
                 TopicId = comment.TopicId,
-                UserId = comment.UserId,
+                UserId = comment.AuthorId,
                 Text = comment.Text,
                 DateAdded = comment.DateAdded,
             };
         }
         #endregion Comment Mappers
 
-        #region Votes Mappers
-        public static Vote ToVote(this DalVote dalVote)
+        #region TopicVote Mappers
+        public static TopicVote ToTopicVote(this DalTopicVote dalVote)
         {
-            return new Vote()
+            return new TopicVote()
             {
-                Id = dalVote.Id,
                 UserId = dalVote.UserId,
+                TopicId = dalVote.TopicId,
                 Up = dalVote.Up,
             };
         }
 
-        public static DalVote ToDalVote(this Vote vote)
+        public static DalTopicVote ToDalTopicVote(this TopicVote vote)
         {
-            return new DalVote()
+            return new DalTopicVote()
             {
-                Id = vote.Id,
                 UserId = vote.UserId,
+                TopicId = vote.TopicId,
                 Up = vote.Up,
             };
         }
-        #endregion Votes Mappers
+
+        #endregion CommentVote Mappers
+
+        #region CommentVote Mappers
+        public static CommentVote ToCommentVote(this DalCommentVote dalCommentVote)
+        {
+            return new CommentVote()
+            {
+                UserId = dalCommentVote.UserId,
+                CommentId = dalCommentVote.CommentId,
+                Up = dalCommentVote.Up,
+            };
+        }
+
+        public static DalCommentVote ToDalCommentVote(this CommentVote commentVote)
+        {
+            return new DalCommentVote()
+            {
+                UserId = commentVote.UserId,
+                CommentId = commentVote.CommentId,
+                Up = commentVote.Up,
+            };
+        }
+
+        #endregion CommentVote Mappers
     }
 }
