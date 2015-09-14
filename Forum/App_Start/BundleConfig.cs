@@ -10,7 +10,7 @@ namespace Forum
         {
             bundles.Add(new ScriptBundle("~/bundles/js")
                         .Include("~/Scripts/jquery-{version}.js")
-                        .Include("~/Scripts/bootstrap.js")
+                        .Include("~/Scripts/bootstrap-min.js")
                         .Include("~/Scripts/app.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
@@ -23,7 +23,7 @@ namespace Forum
                         "~/Scripts/modernizr-*"));
 
             bundles.Add(new StyleBundle("~/Content/css")
-                .Include("~/Content/bootstrap.css")
+                .Include("~/Content/bootstrap-min.css")
                 .Include("~/Content/site.css"));
         }
     }

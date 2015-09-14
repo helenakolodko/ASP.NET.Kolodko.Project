@@ -111,15 +111,16 @@ namespace DAL.Mappers
         #endregion Section Mappers
 
         #region Topic Mappers
-        public static Topic ToTopic(this DalTopic talTopic)
+        public static Topic ToTopic(this DalTopic dalTopic)
         {
             return new Topic()
             {
-                Id = talTopic.Id,
-                Name = talTopic.Name,
-                AuthorId = talTopic.UserId,
-                SectionId = talTopic.SectionId,
-                DateAdded = talTopic.DateAdded,
+                Id = dalTopic.Id,
+                Name = dalTopic.Name,
+                Text = dalTopic.Text,
+                AuthorId = dalTopic.UserId,
+                SectionId = dalTopic.SectionId,
+                DateAdded = dalTopic.DateAdded,
             };
         }
 
@@ -129,6 +130,7 @@ namespace DAL.Mappers
             {
                 Id = topic.Id,
                 Name = topic.Name,
+                Text = topic.Text,
                 UserId = topic.AuthorId,
                 SectionId = topic.SectionId,
                 DateAdded = topic.DateAdded,

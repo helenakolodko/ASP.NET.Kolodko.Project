@@ -117,6 +117,7 @@ namespace BLL.Mappers
             {
                 Id = topicEntity.Id,
                 Name = topicEntity.Name,
+                Text = topicEntity.Text,
                 UserId = topicEntity.UserId,
                 SectionId = topicEntity.SectionId,
                 DateAdded = topicEntity.DateAdded,
@@ -129,6 +130,7 @@ namespace BLL.Mappers
             {
                 Id = dalTopic.Id,
                 Name = dalTopic.Name,
+                Text = dalTopic.Text,
                 UserId = dalTopic.UserId,
                 SectionId = dalTopic.SectionId,
                 DateAdded = dalTopic.DateAdded,

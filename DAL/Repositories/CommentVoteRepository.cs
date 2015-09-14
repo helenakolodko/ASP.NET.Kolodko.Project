@@ -5,6 +5,7 @@ using System.Data.Entity;
 using DAL.Mappers;
 using DAL.Interface;
 using DAL.Interface.Entities;
+using HelperModule;
 using ORM.Entities;
 
 namespace DAL.Repositories
@@ -20,7 +21,13 @@ namespace DAL.Repositories
         
         public IEnumerable<DalCommentVote> GetAll()
         {
-            return context.Set<CommentVote>().Select(vote => vote.ToDalCommentVote());
+            return context.Set<CommentVote>()
+                .Select(vote => new DalCommentVote()
+                {
+                    CommentId = vote.CommentId,
+                    UserId = vote.UserId,
+                    Up = vote.Up,
+                });
         }
 
         public DalCommentVote GetById(int postId, int userId)
@@ -29,9 +36,16 @@ namespace DAL.Repositories
             return ormVote.ToDalCommentVote();
         }
 
-        public DalCommentVote GetByPredicate(System.Linq.Expressions.Expression<Func<DalCommentVote, bool>> predicate)
+        public IEnumerable<DalCommentVote> GetByPredicate(System.Linq.Expressions.Expression<Func<DalCommentVote, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var expression = CustomExpretionVisitor<CommentVote, DalCommentVote>.Tranform(predicate);
+            return context.Set<CommentVote>().Where(expression)
+                .Select(vote => new DalCommentVote() 
+                {
+                    CommentId = vote.CommentId,
+                    UserId = vote.UserId,
+                    Up = vote.Up,
+                });
         }
 
         public void Add(DalCommentVote entity)

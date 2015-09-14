@@ -5,6 +5,7 @@ using System.Data.Entity;
 using DAL.Mappers;
 using DAL.Interface;
 using DAL.Interface.Entities;
+using HelperModule;
 using ORM.Entities;
 
 namespace DAL.Repositories
@@ -20,7 +21,12 @@ namespace DAL.Repositories
 
         public IEnumerable<DalRole> GetAll()
         {
-            return context.Set<Role>().Select(role => role.ToDalRole());
+            return context.Set<Role>()
+                .Select(role => new DalRole()
+                {
+                    Id = role.Id,
+                    Name = role.Name,
+                });
         }
 
         public DalRole GetById(int id)
@@ -31,7 +37,13 @@ namespace DAL.Repositories
 
         public IEnumerable<DalRole> GetByPredicate(System.Linq.Expressions.Expression<Func<DalRole, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var expression = CustomExpretionVisitor<Role, DalRole>.Tranform(predicate);
+            return context.Set<Role>().Where(expression)
+                .Select(role => new DalRole() 
+                { 
+                    Id = role.Id,
+                    Name = role.Name,
+                });
         }
 
         public int Add(DalRole entity)

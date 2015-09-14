@@ -81,13 +81,6 @@ namespace Forum.Controllers
             //    return View(viewModel);
             //}
 
-            //var anyUser = service.GetByPredicate(u => u.Email == viewModel.Email).FirstOrDefault();
-            //if (anyUser != null)
-            //{
-            //    ModelState.AddModelError("Email", "User with this e-mail address has alredy registered.");
-            //    return View(viewModel);
-            //}
-
             if (ModelState.IsValid)
             {
                 MembershipUser membershipUser = ((CustomMembershipProvider)Membership.Provider)

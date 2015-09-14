@@ -5,10 +5,9 @@ using System.Web;
 
 namespace Forum.ViewModels
 {
-    public class SectionViewModel
+    public class SectionHeaderViewModel
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; } 
     }
 }

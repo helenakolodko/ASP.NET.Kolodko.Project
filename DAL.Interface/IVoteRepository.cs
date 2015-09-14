@@ -13,7 +13,7 @@ namespace DAL.Interface
         IEnumerable<T> GetAllOfTopic(int id);
         IEnumerable<T> GetAllOfUser(int id);
         T GetById(int postId, int userId);
-        T GetByPredicate(Expression<Func<T, bool>> predicate);
+        IEnumerable<T> GetByPredicate(Expression<Func<T, bool>> predicate);
         void Add(T entity);
         void Delete(T entity);
         void Update(T entity);

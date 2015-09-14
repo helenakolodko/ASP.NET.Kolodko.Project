@@ -8,10 +8,12 @@ namespace Forum.ViewModels
 {
     public class TopicViewModel
     {
-        public int Id { get; set; }
+        public string Name { get; set; }
+        public string Text { get; set; }
+
         [Display(Name = "User name")]
         public UserViewModel Author { get; set; }
-        public SectionViewModel Section { get; set; }
+        public SectionHeaderViewModel Section { get; set; }
 
         [Display(Name = "Date Added")]        
         public DateTime DateAdded { get; set; }

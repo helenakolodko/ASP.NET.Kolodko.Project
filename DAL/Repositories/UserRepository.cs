@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 
 namespace DAL.Repositories
 {
-    public class UserRepository: IRepository<DalUser>
+    public class UserRepository : IRepository<DalUser>
     {
         private readonly DbContext context;
 
@@ -22,7 +22,14 @@ namespace DAL.Repositories
 
         public IEnumerable<DalUser> GetAll()
         {
-            return context.Set<User>().Select(user => user.ToDalUser());
+            return context.Set<User>().Select(ormUser => new DalUser()
+            {
+                Id = ormUser.Id,
+                Username = ormUser.UserName,
+                Email = ormUser.Email,
+                Password = ormUser.Password,
+                RegistryDate = ormUser.DateAdded,
+            });
         }
 
         public DalUser GetById(int id)
@@ -34,14 +41,15 @@ namespace DAL.Repositories
         public IEnumerable<DalUser> GetByPredicate(Expression<Func<DalUser, bool>> predicate)
         {
             var expression = CustomExpretionVisitor<User, DalUser>.Tranform(predicate);
-            return context.Set<User>().Where(expression).Select(ormuser => new DalUser() 
-            { 
-                Id = ormuser.Id,
-                Username = ormuser.UserName,
-                Email = ormuser.Email,
-                Password = ormuser.Password,
-                RegistryDate = ormuser.DateAdded,                
-            });
+            return context.Set<User>().Where(expression)
+                .Select(ormUser => new DalUser()
+                {
+                    Id = ormUser.Id,
+                    Username = ormUser.UserName,
+                    Email = ormUser.Email,
+                    Password = ormUser.Password,
+                    RegistryDate = ormUser.DateAdded,
+                });
         }
 
         public int Add(DalUser entity)
@@ -55,7 +63,7 @@ namespace DAL.Repositories
         public void Delete(DalUser entity)
         {
             User ormUser = entity.ToUser();
-            
+
             context.Set<User>().Remove(ormUser);
         }
 

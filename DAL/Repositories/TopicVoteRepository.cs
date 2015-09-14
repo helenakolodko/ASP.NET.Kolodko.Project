@@ -5,6 +5,7 @@ using System.Data.Entity;
 using DAL.Mappers;
 using DAL.Interface;
 using DAL.Interface.Entities;
+using HelperModule;
 using ORM.Entities;
 
 namespace DAL.Repositories
@@ -20,7 +21,13 @@ namespace DAL.Repositories
         
         public IEnumerable<DalTopicVote> GetAll()
         {
-            return context.Set<TopicVote>().Select(vote => vote.ToDalTopicVote());
+            return context.Set<TopicVote>()
+                .Select(vote => new DalTopicVote()
+                {
+                    TopicId = vote.TopicId,
+                    UserId = vote.UserId,
+                    Up = vote.Up,
+                });
         }
 
         public DalTopicVote GetById(int postId, int userId)
@@ -29,9 +36,16 @@ namespace DAL.Repositories
             return ormVote.ToDalTopicVote();
         }
 
-        public DalTopicVote GetByPredicate(System.Linq.Expressions.Expression<Func<DalTopicVote, bool>> predicate)
+        public IEnumerable<DalTopicVote> GetByPredicate(System.Linq.Expressions.Expression<Func<DalTopicVote, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var expression = CustomExpretionVisitor<TopicVote, DalTopicVote>.Tranform(predicate);
+            return context.Set<TopicVote>().Where(expression)
+                .Select(vote => new DalTopicVote() 
+                { 
+                    TopicId = vote.TopicId,
+                    UserId = vote.UserId,
+                    Up = vote.Up,
+                });
         }
 
         public void Add(DalTopicVote entity)

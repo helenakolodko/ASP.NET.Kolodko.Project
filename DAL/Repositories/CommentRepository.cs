@@ -5,6 +5,7 @@ using System.Data.Entity;
 using DAL.Mappers;
 using DAL.Interface;
 using DAL.Interface.Entities;
+using HelperModule;
 using ORM.Entities;
 
 namespace DAL.Repositories
@@ -20,18 +21,35 @@ namespace DAL.Repositories
 
         public IEnumerable<DalComment> GetAll()
         {
-            return context.Set<Comment>().Select(content => content.ToDalComment());
+            return context.Set<Comment>()
+                .Select(comment => new DalComment()
+                {
+                    Id = comment.Id,
+                    UserId = comment.AuthorId,
+                    TopicId = comment.TopicId,
+                    Text = comment.Text,
+                    DateAdded = comment.DateAdded,
+                });
         }
 
         public DalComment GetById(int id)
         {
-            var ormComment = context.Set<Comment>().FirstOrDefault(content => content.Id == id);
+            var ormComment = context.Set<Comment>().FirstOrDefault(comment => comment.Id == id);
             return ormComment.ToDalComment();
         }
 
         public IEnumerable<DalComment> GetByPredicate(System.Linq.Expressions.Expression<Func<DalComment, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var expression = CustomExpretionVisitor<Comment, DalComment>.Tranform(predicate);
+            return context.Set<Comment>().Where(expression)
+                .Select(comment => new DalComment() 
+                {
+                    Id = comment.Id,
+                    UserId = comment.AuthorId,
+                    TopicId = comment.TopicId,
+                    Text = comment.Text,
+                    DateAdded = comment.DateAdded,
+                });
         }
 
         public int Add(DalComment entity)

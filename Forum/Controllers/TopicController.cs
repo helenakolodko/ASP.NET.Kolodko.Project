@@ -3,11 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BLL.Interface.Entities;
+using BLL.Interface;
+using Forum.ViewModels;
 
 namespace Forum.Controllers
 {
     public class TopicController : Controller
     {
+        private readonly IService<SectionEntity> sectionService;
+        private readonly IServiceWithRaiting<TopicEntity> topicService;
+
+        public TopicController(IService<SectionEntity> sectionService, IServiceWithRaiting<TopicEntity> topicService)
+        {
+            this.sectionService = sectionService;
+            this.topicService = topicService;
+        }
+
         //
         // GET: /Topic/
 
@@ -29,7 +41,12 @@ namespace Forum.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var sections = sectionService.GetAllEntities()
+                .Select(s => new SectionHeaderViewModel() { Id = s.Id, Name = s.Name });
+            SectionSelectViewModel section = new SectionSelectViewModel(sections);
+
+            TopicCreateViewModel viewModel = new TopicCreateViewModel() { Section = section };
+            return View(viewModel);
         }
 
         //

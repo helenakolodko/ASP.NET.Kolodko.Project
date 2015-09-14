@@ -5,6 +5,7 @@ using System.Data.Entity;
 using DAL.Mappers;
 using DAL.Interface;
 using DAL.Interface.Entities;
+using HelperModule;
 using ORM.Entities;
 
 namespace DAL.Repositories
@@ -20,7 +21,16 @@ namespace DAL.Repositories
 
         public IEnumerable<DalTopic> GetAll()
         {
-            return context.Set<Topic>().Select(topic => topic.ToDalTopic());
+            return context.Set<Topic>()
+                .Select(topic => new DalTopic()
+                {
+                    Id = topic.Id,
+                    Name = topic.Name,
+                    UserId = topic.AuthorId,
+                    SectionId = topic.SectionId,
+                    Text = topic.Text,
+                    DateAdded = topic.DateAdded,
+                });
         }
 
         public DalTopic GetById(int id)
@@ -31,7 +41,17 @@ namespace DAL.Repositories
 
         public IEnumerable<DalTopic> GetByPredicate(System.Linq.Expressions.Expression<Func<DalTopic, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var expression = CustomExpretionVisitor<Topic, DalTopic>.Tranform(predicate);
+            return context.Set<Topic>().Where(expression)
+                .Select(topic => new DalTopic() 
+                {
+                    Id = topic.Id,
+                    Name = topic.Name,
+                    UserId = topic.AuthorId,
+                    SectionId = topic.SectionId,
+                    Text = topic.Text,
+                    DateAdded = topic.DateAdded,
+                });
         }
 
         public int Add(DalTopic entity)

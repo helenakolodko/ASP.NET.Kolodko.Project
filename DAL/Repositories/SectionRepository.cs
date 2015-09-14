@@ -5,6 +5,7 @@ using System.Data.Entity;
 using DAL.Mappers;
 using DAL.Interface;
 using DAL.Interface.Entities;
+using HelperModule;
 using ORM.Entities;
 
 namespace DAL.Repositories
@@ -20,7 +21,13 @@ namespace DAL.Repositories
 
         public IEnumerable<DalSection> GetAll()
         {
-            return context.Set<Section>().Select(ormSection => ormSection.ToDalSection());
+            return context.Set<Section>()
+                .Select(ormSection => new DalSection()
+                {
+                    Id = ormSection.Id,
+                    Name = ormSection.Name,
+                    Info = ormSection.Info
+                });
         }
 
         public DalSection GetById(int id)
@@ -31,7 +38,14 @@ namespace DAL.Repositories
 
         public IEnumerable<DalSection> GetByPredicate(System.Linq.Expressions.Expression<Func<DalSection, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var expression = CustomExpretionVisitor<Section, DalSection>.Tranform(predicate);
+            return context.Set<Section>().Where(expression)
+                .Select(ormSection => new DalSection()
+                {
+                    Id = ormSection.Id,
+                    Name = ormSection.Name,
+                    Info = ormSection.Info
+                });
         }
 
         public int Add(DalSection entity)

@@ -5,11 +5,12 @@ using System.Data.Entity;
 using DAL.Mappers;
 using DAL.Interface;
 using DAL.Interface.Entities;
+using HelperModule;
 using ORM.Entities;
 
 namespace DAL.Repositories
 {
-    public class UserInfoRepository: IRepository<DalUserInfo>
+    public class UserInfoRepository : IRepository<DalUserInfo>
     {
         private readonly DbContext context;
 
@@ -20,7 +21,18 @@ namespace DAL.Repositories
 
         public IEnumerable<DalUserInfo> GetAll()
         {
-            return context.Set<UserInfo>().Select(info => info.ToDalUserInfo());
+            return context.Set<UserInfo>()
+                .Select(info => new DalUserInfo()
+                {
+                    Id = info.UserId,
+                    FirstName = info.FirstName,
+                    LastName = info.LastName,
+                    About = info.About,
+                    BirthDate = info.BirthDate,
+                    Country = info.Country,
+                    City = info.City,
+                    AvatarPath = info.AvatarPath,
+                });
         }
 
         public DalUserInfo GetById(int id)
@@ -31,7 +43,19 @@ namespace DAL.Repositories
 
         public IEnumerable<DalUserInfo> GetByPredicate(System.Linq.Expressions.Expression<Func<DalUserInfo, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var expression = CustomExpretionVisitor<UserInfo, DalUserInfo>.Tranform(predicate);
+            return context.Set<UserInfo>().Where(expression)
+                .Select(info => new DalUserInfo()
+                {
+                    Id = info.UserId,
+                    FirstName = info.FirstName,
+                    LastName = info.LastName,
+                    About = info.About,
+                    BirthDate = info.BirthDate,
+                    Country = info.Country,
+                    City = info.City,
+                    AvatarPath = info.AvatarPath,
+                });
         }
 
         public int Add(DalUserInfo entity)
