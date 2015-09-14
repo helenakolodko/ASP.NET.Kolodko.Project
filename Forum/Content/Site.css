@@ -53,6 +53,14 @@ body {
 	margin: 0;
 }
 
+.logo {
+    -webkit-filter: grayscale(100%);
+}
+
+.logo:hover {
+    -webkit-filter: grayscale(0%);
+}
+
 .content {
     background-color: #f1f1f1;
 	margin-top: 15px;

@@ -6,6 +6,7 @@ using BLL.Mappers;
 using BLL.Interface.Entities;
 using DAL.Interface;
 using DAL.Interface.Entities;
+using System.Linq.Expressions;
 
 namespace BLL.Services
 {
@@ -13,9 +14,9 @@ namespace BLL.Services
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IRepository<DalTopic> topicRepository;
-        private readonly IRepository<DalTopicVote> voteRepository;
+        private readonly IVoteRepository<DalTopicVote> voteRepository;
 
-        public TopicService(IUnitOfWork unitOfWork, IRepository<DalTopic> topicRepository, IRepository<DalTopicVote> voteRepository)
+        public TopicService(IUnitOfWork unitOfWork, IRepository<DalTopic> topicRepository, IVoteRepository<DalTopicVote> voteRepository)
         {
             this.unitOfWork = unitOfWork;
             this.topicRepository = topicRepository;
@@ -24,12 +25,13 @@ namespace BLL.Services
 
         public int GetRaiting(TopicEntity topic)
         {
-            throw new NotImplementedException();
+            var votes = voteRepository.GetAllOfTopic(topic.Id);
+            return votes.Count() - votes.Where(vote => vote.Up).Count();
         }
 
-        public void AddVote(TopicEntity topicId, UserEntity userId, bool up)
+        public void AddVote(TopicEntity topic, UserEntity user, bool up)
         {
-            voteRepository.Add(new DalTopicVote() { });   
+            voteRepository.Add(new DalTopicVote() { TopicId = topic.Id, UserId = user.Id, Up = up });   
         }
 
         public void RemoveVote(TopicEntity topicId, UserEntity userId)
@@ -64,6 +66,12 @@ namespace BLL.Services
         {
             topicRepository.Update(entity.ToDalTopic());
             unitOfWork.Commit();
+        }
+
+
+        public IEnumerable<TopicEntity> GetByPredicate(Expression<Func<TopicEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

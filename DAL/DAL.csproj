@@ -65,6 +65,10 @@
       <Project>{6f11d393-f53a-4ead-9ac9-5368593b030c}</Project>
       <Name>DAL.Interface</Name>
     </ProjectReference>
+    <ProjectReference Include="..\HelperModule\HelperModule.csproj">
+      <Project>{210c5419-cf0e-48c6-9ebe-daa5ad808de1}</Project>
+      <Name>HelperModule</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ORM\ORM.csproj">
       <Project>{3586f0b9-f20e-4dc4-91f2-e462af3f8b5a}</Project>
       <Name>ORM</Name>

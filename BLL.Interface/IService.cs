@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
 
 namespace BLL.Interface
 {
@@ -10,6 +8,7 @@ namespace BLL.Interface
     {
         T GetEntity(int id);
         IEnumerable<T> GetAllEntities();
+        IEnumerable<T> GetByPredicate(Expression<Func<T, bool>> predicate);
         int Create(T entity);
         void Delete(T entity);
         void Update(T entity);   

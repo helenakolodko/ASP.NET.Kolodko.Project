@@ -2,6 +2,7 @@
 using System.Web.Security;
 using Forum.ViewModels;
 using Forum.Providers;
+using System.Linq;
 using BLL.Interface;
 using BLL.Interface.Entities;
 
@@ -80,27 +81,28 @@ namespace Forum.Controllers
             //    return View(viewModel);
             //}
 
-            //var anyUser = service.GetAllEntities().Any(u => u.Email.Contains(viewModel.Email));
-            //if (anyUser)
+            //var anyUser = service.GetByPredicate(u => u.Email == viewModel.Email).FirstOrDefault();
+            //if (anyUser != null)
             //{
-            //    ModelState.AddModelError("Email", "Пользователь с таким адресом уже зарегистрирован");
+            //    ModelState.AddModelError("Email", "User with this e-mail address has alredy registered.");
             //    return View(viewModel);
             //}
 
-            //if (ModelState.IsValid)
-            //{
-            //    MembershipUser membershipUser = ((CustomMembershipProvider)Membership.Provider).CreateUser(viewModel.Email, viewModel.Password);
+            if (ModelState.IsValid)
+            {
+                MembershipUser membershipUser = ((CustomMembershipProvider)Membership.Provider)
+                    .CreateUser(viewModel.Username, viewModel.Email, viewModel.Password);
 
-            //    if (membershipUser != null)
-            //    {
-            //        FormsAuthentication.SetAuthCookie(viewModel.Email, false);
-            //        return RedirectToAction("Index", "Account");
-            //    }
-            //    else
-            //    {
-            //        ModelState.AddModelError("", "Ошибка при регистрации");
-            //    }
-            //}
+                if (membershipUser != null)
+                {
+                    FormsAuthentication.SetAuthCookie(viewModel.Email, false);
+                    return RedirectToAction("Index", "Account");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Registration error.");
+                }
+            }
             return View(viewModel);
         }
 

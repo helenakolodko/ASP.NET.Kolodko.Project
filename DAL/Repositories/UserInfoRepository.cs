@@ -29,7 +29,7 @@ namespace DAL.Repositories
             return ormUserInfo.ToDalUserInfo();
         }
 
-        public DalUserInfo GetByPredicate(System.Linq.Expressions.Expression<Func<DalUserInfo, bool>> predicate)
+        public IEnumerable<DalUserInfo> GetByPredicate(System.Linq.Expressions.Expression<Func<DalUserInfo, bool>> predicate)
         {
             throw new NotImplementedException();
         }

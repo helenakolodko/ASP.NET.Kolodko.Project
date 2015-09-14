@@ -51,13 +51,7 @@ var main = function () {
 				'<\/div>'+
 			'<\/div>').insertBefore('#comment-form');
     });
-	
-	$(".logo").hover(function(){
-		$(this).attr("src", "/Content/images/" + $(this).attr("alt") + "-icon.png");
-		}, function(){
-		$(this).attr("src", "/Content/images/" + $(this).attr("alt") + "-grey-icon.png");
-		
-});
+
 }
 
 	$(function () {

@@ -8,6 +8,7 @@ using BLL.Interface.Entities;
 using BLL.Mappers;
 using DAL.Interface.Entities;
 using DAL.Interface;
+using System.Linq.Expressions;
 
 namespace BLL.Services
 {
@@ -50,6 +51,12 @@ namespace BLL.Services
         {
             userInfoRepository.Update(entity.ToDalUserInfo());
             unitOfWork.Commit();
+        }
+
+
+        public IEnumerable<UserInfoEntity> GetByPredicate(Expression<Func<UserInfoEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
         }
     }
 }

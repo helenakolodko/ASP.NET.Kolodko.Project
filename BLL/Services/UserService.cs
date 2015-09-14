@@ -8,6 +8,7 @@ using BLL.Interface;
 using BLL.Mappers;
 using DAL.Interface.Entities;
 using DAL.Interface;
+using HelperModule;
 
 namespace BLL.Services
 {
@@ -31,6 +32,13 @@ namespace BLL.Services
         {
             return userRepository.GetAll().Select(user => user.ToBllUser());
         }
+
+        public IEnumerable<UserEntity> GetByPredicate(System.Linq.Expressions.Expression<Func<UserEntity, bool>> predicate)
+        {
+            var expression = CustomExpretionVisitor<DalUser, UserEntity>.Tranform(predicate);
+            return userRepository.GetByPredicate(expression).Select(user => user.ToBllUser()); ;
+        }
+
 
         public int Create(UserEntity entity)
         {

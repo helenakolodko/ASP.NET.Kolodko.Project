@@ -29,7 +29,7 @@ namespace DAL.Repositories
             return ormTopic.ToDalTopic();
         }
 
-        public DalTopic GetByPredicate(System.Linq.Expressions.Expression<Func<DalTopic, bool>> predicate)
+        public IEnumerable<DalTopic> GetByPredicate(System.Linq.Expressions.Expression<Func<DalTopic, bool>> predicate)
         {
             throw new NotImplementedException();
         }

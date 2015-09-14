@@ -9,10 +9,15 @@ namespace Forum.ViewModels
 {
     public class UserViewModel
     {
-        public int Id { get; set; }
-
         [Display(Name = "User name")]
         public string UserName { get; set; }
-        public string Role { get; set; }
+
+        [Display(Name = "E-Mail")]
+        public string Email { get; set; }
+
+        [Display(Name = "Registration date")]
+        public DateTime DateAdded { get; set; }
+
+        // public List<RoleViewModel> Roles { get; set; }
     }
 }

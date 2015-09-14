@@ -1,0 +1,62 @@
+﻿@model Forum.ViewModels.RegisterViewModel
+
+@{
+    ViewBag.Title = "Register";
+}
+
+<div class="container content">
+    <h2>Register</h2>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+
+        <div class="form">
+            <form>
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Username)
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.ValidationMessageFor(model => model.Username, null, new { @class = "alert alert-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Email)
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.ValidationMessageFor(model => model.Email, null, new { @class = "alert alert-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Password)
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.ValidationMessageFor(model => model.Password, null, new { @class = "alert alert-danger" })
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.ConfirmPassword)
+                    @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, null, new { @class = "alert alert-danger" })
+                </div>
+
+                @*<div class="editor-label">
+                        @Html.LabelFor(model => model.Captcha)
+                    </div>
+                    <div class="editor-field">
+                        @Html.EditorFor(model => model.Captcha)
+                        @Html.ValidationMessageFor(model => model.Captcha)
+                    </div>*@
+
+                <button type="submit" class="btn btn-primary">Register</button>
+
+            </form>
+        </div>
+    }
+
+    @*<div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>*@
+</div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

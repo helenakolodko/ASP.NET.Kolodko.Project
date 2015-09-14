@@ -6,6 +6,8 @@ using DAL.Mappers;
 using DAL.Interface;
 using DAL.Interface.Entities;
 using ORM.Entities;
+using HelperModule;
+using System.Linq.Expressions;
 
 namespace DAL.Repositories
 {
@@ -29,9 +31,17 @@ namespace DAL.Repositories
             return ormUser.ToDalUser();
         }
 
-        public DalUser GetByPredicate(System.Linq.Expressions.Expression<Func<DalUser, bool>> predicate)
+        public IEnumerable<DalUser> GetByPredicate(Expression<Func<DalUser, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var expression = CustomExpretionVisitor<User, DalUser>.Tranform(predicate);
+            return context.Set<User>().Where(expression).Select(ormuser => new DalUser() 
+            { 
+                Id = ormuser.Id,
+                Username = ormuser.UserName,
+                Email = ormuser.Email,
+                Password = ormuser.Password,
+                RegistryDate = ormuser.DateAdded,                
+            });
         }
 
         public int Add(DalUser entity)

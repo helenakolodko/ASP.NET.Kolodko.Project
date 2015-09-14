@@ -29,7 +29,7 @@ namespace DAL.Repositories
             return ormRole.ToDalRole();
         }
 
-        public DalRole GetByPredicate(System.Linq.Expressions.Expression<Func<DalRole, bool>> predicate)
+        public IEnumerable<DalRole> GetByPredicate(System.Linq.Expressions.Expression<Func<DalRole, bool>> predicate)
         {
             throw new NotImplementedException();
         }

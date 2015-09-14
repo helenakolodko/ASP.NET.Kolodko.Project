@@ -34,12 +34,7 @@ namespace Forum.ViewModels
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
-        [Required]
-        public string Captcha { get; set; }
-
-        [DataType(DataType.Date)]
-        public DateTime AddedDate { get; set; }
-
-        public string AvatarPath { get; set; }
+        //[Required]
+        //public string Captcha { get; set; }
     }
 }

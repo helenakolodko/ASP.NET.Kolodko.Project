@@ -19,7 +19,7 @@ namespace BLL.Mappers
                 Username = userEntity.Username,
                 Email = userEntity.Email,
                 Password = userEntity.Password,
-                RegistryDate = userEntity.RegistryDate,                
+                RegistryDate = userEntity.RegistrationDate,                
             };
         }
 
@@ -31,7 +31,7 @@ namespace BLL.Mappers
                 Username = dalUser.Username,
                 Email = dalUser.Email,
                 Password = dalUser.Password,
-                RegistryDate = dalUser.RegistryDate,
+                RegistrationDate = dalUser.RegistryDate,
             };
         }
         #endregion User Mappers

@@ -29,7 +29,7 @@ namespace DAL.Repositories
             return ormComment.ToDalComment();
         }
 
-        public DalComment GetByPredicate(System.Linq.Expressions.Expression<Func<DalComment, bool>> predicate)
+        public IEnumerable<DalComment> GetByPredicate(System.Linq.Expressions.Expression<Func<DalComment, bool>> predicate)
         {
             throw new NotImplementedException();
         }

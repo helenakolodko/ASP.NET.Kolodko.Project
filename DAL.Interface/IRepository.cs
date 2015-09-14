@@ -8,7 +8,7 @@ namespace DAL.Interface
     {
         IEnumerable<T> GetAll();
         T GetById(int id);
-        T GetByPredicate(Expression<Func<T, bool>> predicate);
+        IEnumerable<T> GetByPredicate(Expression<Func<T, bool>> predicate);
         int Add(T entity);
         void Delete(T entity);
         void Update(T entity);
