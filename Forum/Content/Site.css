@@ -53,6 +53,10 @@ body {
 	margin: 0;
 }
 
+.form {
+    margin-bottom: 35px;
+}
+
 .logo {
     -webkit-filter: grayscale(100%);
 }

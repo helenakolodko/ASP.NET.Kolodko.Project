@@ -295,7 +295,7 @@
     <Content Include="Views\Topic\Create.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
-    <Content Include="Views\Shared\EditorTemplates\SectionSelectViewModel.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\SectionSelector.cshtml" />
     <Content Include="Views\Shared\DisplayTemplates\SectionHeaderViewModel.cshtml" />
     <Content Include="Views\Shared\_TopicList.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />

@@ -19,7 +19,7 @@ namespace Forum.ViewModels
         public string Text { get; set; }
 
         [Required]
-        [Display(Name = "Section")]
-        public SectionSelectViewModel Section { get; set; }
+        [UIHint("SectionSelector")]
+        public int Section { get; set; }
     }
 }

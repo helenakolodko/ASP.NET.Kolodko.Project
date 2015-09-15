@@ -45,65 +45,60 @@ namespace Forum.Controllers
             return View(latestTopics);
         }
 
-        //
-        // GET: /Topic/Details/5
-
         public ActionResult Details(int id)
+        {
+            TopicEntity topic = topicService.GetEntity(id);
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Create()
+        {
+            var sections = sectionService.GetAllEntities()
+                .Select(s => new { Id = s.Id, Name = s.Name });
+            ViewBag.Sections = new SelectList(sections, "Id", "Name");
+            TopicCreateViewModel viewModel = new TopicCreateViewModel();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(TopicCreateViewModel viewModel)
         {
             try
             {
-                TopicEntity topic = topicService.GetEntity(id);
+                if (ModelState.IsValid)
+                {
+                    TopicEntity topic = new TopicEntity() 
+                    { 
+                        DateAdded = DateTime.Now,
+                        UserId = userService.GetByPredicate(u => u.Email == User.Identity.Name).FirstOrDefault().Id,
+                        SectionId = 1,
+                        Name = viewModel.Name,
+                        Text = viewModel.Text,
+                    };
+                    topicService.Create(topic);
+                    return RedirectToAction("Index");
+                }
             }
-            catch(Exception e){
+            catch(Exception e)
+            {
                 logger.Error("Topic/Details/id error", e);
-                View("Error");
             }
             return View();
         }
 
-        //
-        // GET: /Topic/Create
-
-        public ActionResult Create()
-        {
-            var sections = sectionService.GetAllEntities()
-                .Select(s => new SectionHeaderViewModel() { Id = s.Id, Name = s.Name });
-            SectionSelectViewModel section = new SectionSelectViewModel(sections);
-
-            TopicCreateViewModel viewModel = new TopicCreateViewModel() { Section = section };
-            return View(viewModel);
-        }
-
-        //
-        // POST: /Topic/Create
-
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        //
-        // GET: /Topic/Edit/5
-
+        [Authorize]
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        //
-        // POST: /Topic/Edit/5
 
         [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, FormCollection collection)
         {
             try
@@ -118,9 +113,8 @@ namespace Forum.Controllers
             }
         }
 
-        //
-        // GET: /Topic/Delete/5
 
+        [Authorize]
         public ActionResult Delete(int id)
         {
             return View();
@@ -130,6 +124,8 @@ namespace Forum.Controllers
         // POST: /Topic/Delete/5
 
         [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try
@@ -142,6 +138,13 @@ namespace Forum.Controllers
             {
                 return View();
             }
+        }
+
+        [ChildActionOnly]
+        public ActionResult GetSections()
+        {
+            
+            return PartialView("");
         }
     }
 }
