@@ -209,5 +209,30 @@ namespace DAL.Mappers
         }
 
         #endregion CommentVote Mappers
+
+        #region LogMessage Mappers
+        public static LogMessage ToLogMessage(this DalLogMessage dalLogMessage)
+        {
+            return new LogMessage()
+            {
+                Id = dalLogMessage.Id,
+                TimeOccured = dalLogMessage.TimeOccured,
+                Level = dalLogMessage.Level,
+                Message = dalLogMessage.Message,
+            };
+        }
+
+        public static DalLogMessage ToDalLogMessage(this LogMessage logMessage)
+        {
+            return new DalLogMessage()
+            {
+                Id = logMessage.Id,
+                TimeOccured = logMessage.TimeOccured,
+                Level = logMessage.Level,
+                Message = logMessage.Message,
+            };
+        }
+
+        #endregion LogMessage Mappers
     }
 }

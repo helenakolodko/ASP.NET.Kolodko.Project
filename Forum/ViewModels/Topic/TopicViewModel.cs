@@ -17,6 +17,8 @@ namespace Forum.ViewModels
 
         [Display(Name = "Date Added")]        
         public DateTime DateAdded { get; set; }
+
+        [UIHint("Raiting")]
         public int Raiting { get; set; }
     }
 }                                               

@@ -9,8 +9,9 @@ using DAL.Interface;
 using DAL.Interface.Entities;
 using Ninject;
 using Ninject.Web.Common;
-using ORM.Entities;
 using ORM;
+using Log.Interface;
+using Log;
 
 namespace DependencyResolver
 {
@@ -51,6 +52,9 @@ namespace DependencyResolver
             kernel.Bind<IService<SectionEntity>>().To<SectionService>();
             kernel.Bind<IRepository<DalSection>>().To<SectionRepository>();
 
+            kernel.Bind<IService<LogMessageEntity>>().To<LogMessageService>();
+            kernel.Bind<IRepository<DalLogMessage>>().To<LogMessageRepository>();
+
             kernel.Bind<IServiceWithRaiting<CommentEntity>>().To<CommentService>();
             kernel.Bind<IRepository<DalComment>>().To<CommentRepository>();
 
@@ -59,6 +63,8 @@ namespace DependencyResolver
 
             kernel.Bind<IVoteRepository<DalTopicVote>>().To<TopicVoteRepository>();
             kernel.Bind<IVoteRepository<DalCommentVote>>().To<CommentVoteRepository>();
+
+            kernel.Bind<ILogger>().To<NLogAdapter>();
         }
     }
 }

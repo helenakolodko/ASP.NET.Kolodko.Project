@@ -1,0 +1,18 @@
+﻿@model int
+
+@{string displayClass = "text-muted";}
+
+@if (Model > 0)
+{
+    displayClass =  "text-success";
+}
+else if (Model < 0)
+{
+    displayClass = "text-danger";
+}
+
+<div class=@displayClass>
+    <a><span class="glyphicon glyphicon-chevron-up"></span></a>
+        @Model 
+    <a><span class="glyphicon glyphicon-chevron-down"></span></a>
+</div>

@@ -163,5 +163,30 @@ namespace BLL.Mappers
             };
         }
         #endregion Comment Mappers
+
+        #region LogMessage Mappers
+        public static DalLogMessage ToDalLogMessage(this LogMessageEntity logMessageEntity)
+        {
+            return new DalLogMessage()
+            {
+                Id = logMessageEntity.Id,
+                TimeOccured = logMessageEntity.TimeOccured,
+                Level = logMessageEntity.Level,
+                Message = logMessageEntity.Message,
+            };
+        }
+
+        public static LogMessageEntity ToBllLogMessage(this DalLogMessage dalLogMessage)
+        {
+            return new LogMessageEntity()
+            {
+                Id = dalLogMessage.Id,
+                TimeOccured = dalLogMessage.TimeOccured,
+                Level = dalLogMessage.Level,
+                Message = dalLogMessage.Message,
+            };
+        }
+
+        #endregion LogMessage Mappers
     }
 }

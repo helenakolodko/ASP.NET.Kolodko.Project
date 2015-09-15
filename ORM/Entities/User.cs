@@ -32,7 +32,7 @@ namespace ORM.Entities
         [StringLength(100)]
         public string Password { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime DateAdded { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

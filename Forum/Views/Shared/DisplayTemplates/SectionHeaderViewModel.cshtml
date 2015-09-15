@@ -1,0 +1,10 @@
+﻿@model Forum.ViewModels.SectionHeaderViewModel
+
+@if (Model == null)
+{
+    None
+}
+else
+{
+    @Html.ActionLink(Model.Name, "Details", "Section", new { id = Model.Id })
+}

@@ -15,6 +15,7 @@ namespace Forum.ViewModels
 
         [Required]
         [Display(Name = "Content")]
+        [DataType(DataType.MultilineText)]
         public string Text { get; set; }
 
         [Required]

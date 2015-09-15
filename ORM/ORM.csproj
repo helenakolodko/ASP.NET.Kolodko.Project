@@ -67,6 +67,7 @@
   <ItemGroup>
     <Compile Include="Entities\Comment.cs" />
     <Compile Include="Entities\CommentVote.cs" />
+    <Compile Include="Entities\LogMessage.cs" />
     <Compile Include="ForumContext.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\Section.cs" />
@@ -81,6 +82,18 @@
     <Compile Include="Migrations\201509140627192_Changed Password Length.cs" />
     <Compile Include="Migrations\201509140627192_Changed Password Length.Designer.cs">
       <DependentUpon>201509140627192_Changed Password Length.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509150716407_Changed DateAdded underlying type.cs" />
+    <Compile Include="Migrations\201509150716407_Changed DateAdded underlying type.Designer.cs">
+      <DependentUpon>201509150716407_Changed DateAdded underlying type.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509151234010_Added LogMessage.cs" />
+    <Compile Include="Migrations\201509151234010_Added LogMessage.Designer.cs">
+      <DependentUpon>201509151234010_Added LogMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201509151632398_Changed LogMessage Level type.cs" />
+    <Compile Include="Migrations\201509151632398_Changed LogMessage Level type.Designer.cs">
+      <DependentUpon>201509151632398_Changed LogMessage Level type.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,6 +125,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201509140627192_Changed Password Length.resx">
       <DependentUpon>201509140627192_Changed Password Length.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509150716407_Changed DateAdded underlying type.resx">
+      <DependentUpon>201509150716407_Changed DateAdded underlying type.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509151234010_Added LogMessage.resx">
+      <DependentUpon>201509151234010_Added LogMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201509151632398_Changed LogMessage Level type.resx">
+      <DependentUpon>201509151632398_Changed LogMessage Level type.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

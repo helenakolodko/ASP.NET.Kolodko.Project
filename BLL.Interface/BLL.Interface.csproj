@@ -40,6 +40,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\CommentEntity.cs" />
+    <Compile Include="Entities\LogMessageEntity.cs" />
     <Compile Include="Entities\RoleEntity.cs" />
     <Compile Include="Entities\SectionEntity.cs" />
     <Compile Include="Entities\TopicEntity.cs" />

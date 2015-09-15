@@ -25,7 +25,7 @@ namespace ORM.Entities
 
         public int? SectionId { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "datetime")]
         public DateTime DateAdded { get; set; }
 
         [Required]

@@ -80,6 +80,14 @@
       <Project>{aaf6d8e5-7c8e-416d-802e-ca688550e6e3}</Project>
       <Name>DAL</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Log.Interface\Log.Interface.csproj">
+      <Project>{3a6a66ce-033d-4625-9abf-1dfb2e66428e}</Project>
+      <Name>Log.Interface</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Log\Log.csproj">
+      <Project>{a1baae1f-8385-4f32-8e44-d76a05e23eb7}</Project>
+      <Name>Log</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ORM\ORM.csproj">
       <Project>{3586f0b9-f20e-4dc4-91f2-e462af3f8b5a}</Project>
       <Name>ORM</Name>

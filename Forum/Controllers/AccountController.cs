@@ -8,7 +8,6 @@ using BLL.Interface.Entities;
 
 namespace Forum.Controllers
 {
-    [AllowAnonymous]
     public class AccountController : Controller
     {
         private readonly IService<UserEntity> service;
@@ -18,6 +17,7 @@ namespace Forum.Controllers
             this.service = service;
         }
 
+        // Only for admins
         public ActionResult Index()
         {
             //var model = from u in service.GetAllUsers()
@@ -30,12 +30,14 @@ namespace Forum.Controllers
             return View(/*model*/);
         }
 
+        [AllowAnonymous]
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Login(LoginViewModel viewModel, string returnUrl)
         {
             if (ModelState.IsValid)
@@ -67,12 +69,14 @@ namespace Forum.Controllers
             return RedirectToAction("Login", "Account");
         }
 
+        [AllowAnonymous]
         public ActionResult Register()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public ActionResult Register(RegisterViewModel viewModel)
         {
             //if (viewModel.Captcha != (string)Session[CaptchaImage.CaptchaValueKey])
@@ -123,10 +127,5 @@ namespace Forum.Controllers
         //    ci.Dispose();
         //    return null;
         //}
-        [ChildActionOnly]
-        public ActionResult Menu()
-        {
-            return PartialView();
-        }
     }
 }

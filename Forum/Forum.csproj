@@ -149,7 +149,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SectionController.cs" />
     <Compile Include="Controllers\TopicController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -159,11 +161,12 @@
     <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\SectionViewModel.cs" />
-    <Compile Include="ViewModels\SectionSelectViewModel.cs" />
-    <Compile Include="ViewModels\SectionHeaderViewModel.cs" />
-    <Compile Include="ViewModels\TopicCreateViewModel.cs" />
-    <Compile Include="ViewModels\TopicViewModel.cs" />
+    <Compile Include="ViewModels\Section\SectionViewModel.cs" />
+    <Compile Include="ViewModels\Section\SectionSelectViewModel.cs" />
+    <Compile Include="ViewModels\Section\SectionHeaderViewModel.cs" />
+    <Compile Include="ViewModels\Topic\TopicCreateViewModel.cs" />
+    <Compile Include="ViewModels\Topic\TopicInfoViewModel.cs" />
+    <Compile Include="ViewModels\Topic\TopicViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -176,6 +179,7 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap-min.css" />
+    <Content Include="Content\images\bart.png" />
     <Content Include="Content\images\Facebook-icon.png" />
     <Content Include="Content\images\figures-color.jpg" />
     <Content Include="Content\images\figures.jpg" />
@@ -292,6 +296,10 @@
     <Content Include="Views\Shared\EditorTemplates\String.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Password.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\SectionSelectViewModel.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\SectionHeaderViewModel.cshtml" />
+    <Content Include="Views\Shared\_TopicList.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
+    <Content Include="Views\Shared\EditorTemplates\Raiting.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL.Interface\BLL.Interface.csproj">
@@ -301,6 +309,10 @@
     <ProjectReference Include="..\DependencyResolver\DependencyResolver.csproj">
       <Project>{fbaea5e1-422d-4b68-bc93-ce587c697d30}</Project>
       <Name>DependencyResolver</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Log.Interface\Log.Interface.csproj">
+      <Project>{3a6a66ce-033d-4625-9abf-1dfb2e66428e}</Project>
+      <Name>Log.Interface</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

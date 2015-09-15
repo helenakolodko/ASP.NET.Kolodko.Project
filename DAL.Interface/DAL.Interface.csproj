@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\DalComment.cs" />
+    <Compile Include="Entities\DalLogMessage.cs" />
     <Compile Include="Entities\DalRole.cs" />
     <Compile Include="Entities\DalSection.cs" />
     <Compile Include="Entities\DalTopic.cs" />

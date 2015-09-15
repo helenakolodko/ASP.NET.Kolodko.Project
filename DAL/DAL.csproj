@@ -51,6 +51,7 @@
     <Compile Include="Mappers\DalEntityMappers.cs" />
     <Compile Include="Repositories\CommentRepository.cs" />
     <Compile Include="Repositories\CommentVoteRepository.cs" />
+    <Compile Include="Repositories\LogMessageRepository.cs" />
     <Compile Include="Repositories\TopicVoteRepository.cs" />
     <Compile Include="Repositories\RoleRepository.cs" />
     <Compile Include="Repositories\SectionRepository.cs" />
