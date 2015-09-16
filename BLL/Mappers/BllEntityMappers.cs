@@ -13,6 +13,8 @@ namespace BLL.Mappers
         #region User Mappers
         public static DalUser ToDalUser(this UserEntity userEntity)
         {
+            if (userEntity == null)
+                return null;
             return new DalUser()
             {
                 Id = userEntity.Id,
@@ -25,6 +27,8 @@ namespace BLL.Mappers
 
         public static UserEntity ToBllUser(this DalUser dalUser)
         {
+            if (dalUser == null)
+                return null;
             return new UserEntity()
             {
                 Id = dalUser.Id,
@@ -39,6 +43,8 @@ namespace BLL.Mappers
         #region UserInfo Mappers
         public static DalUserInfo ToDalUserInfo(this UserInfoEntity userInfoEntity)
         {
+            if (userInfoEntity == null)
+                return null;
             return new DalUserInfo()
             {
                 Id = userInfoEntity.Id,
@@ -54,6 +60,8 @@ namespace BLL.Mappers
 
         public static UserInfoEntity ToBllUserInfo(this DalUserInfo dalUserInfo)
         {
+            if (dalUserInfo == null)
+                return null;
             return new UserInfoEntity()
             {
                 Id = dalUserInfo.Id,
@@ -71,6 +79,8 @@ namespace BLL.Mappers
         #region Role Mappers
         public static DalRole ToDalRole(this RoleEntity roleEntity)
         {
+            if (roleEntity == null)
+                return null;
             return new DalRole()
             {
                 Id = roleEntity.Id,
@@ -80,6 +90,8 @@ namespace BLL.Mappers
 
         public static RoleEntity ToBllRole(this DalRole dalRole)
         {
+            if (dalRole == null)
+                return null;
             return new RoleEntity()
             {
                 Id = dalRole.Id,
@@ -91,6 +103,8 @@ namespace BLL.Mappers
         #region Section Mappers
         public static DalSection ToDalSection(this SectionEntity sectionEntity)
         {
+            if (sectionEntity == null)
+                return null;
             return new DalSection()
             {
                 Id = sectionEntity.Id,
@@ -101,6 +115,8 @@ namespace BLL.Mappers
 
         public static SectionEntity ToBllSection(this DalSection dalSection)
         {
+            if (dalSection == null)
+                return null;
             return new SectionEntity()
             {
                 Id = dalSection.Id,
@@ -145,6 +161,8 @@ namespace BLL.Mappers
         #region Comment Mappers
         public static DalComment ToDalComment(this CommentEntity commentEntity)
         {
+            if (commentEntity == null)
+                return null;
             return new DalComment()
             {
                 Id = commentEntity.Id,
@@ -157,6 +175,8 @@ namespace BLL.Mappers
 
         public static CommentEntity ToBllComment(this DalComment dalCommnet)
         {
+            if (dalCommnet == null)
+                return null;
             return new CommentEntity()
             {
                 Id = dalCommnet.Id,
@@ -171,6 +191,8 @@ namespace BLL.Mappers
         #region LogMessage Mappers
         public static DalLogMessage ToDalLogMessage(this LogMessageEntity logMessageEntity)
         {
+            if (logMessageEntity == null)
+                return null;
             return new DalLogMessage()
             {
                 Id = logMessageEntity.Id,
@@ -182,6 +204,8 @@ namespace BLL.Mappers
 
         public static LogMessageEntity ToBllLogMessage(this DalLogMessage dalLogMessage)
         {
+            if (dalLogMessage == null)
+                return null;
             return new LogMessageEntity()
             {
                 Id = dalLogMessage.Id,

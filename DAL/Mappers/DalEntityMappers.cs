@@ -13,6 +13,8 @@ namespace DAL.Mappers
         #region User Mappers
         public static User ToUser(this DalUser dalUser)
         {
+            if (dalUser == null)
+                return null;
             return new User()
             {
                 Id = dalUser.Id,
@@ -25,6 +27,8 @@ namespace DAL.Mappers
 
         public static DalUser ToDalUser(this User user)
         {
+            if (user == null)
+                return null;
             return new DalUser()
             {
                 Id = user.Id,
@@ -39,6 +43,8 @@ namespace DAL.Mappers
         #region UserInfo Mappers
         public static UserInfo ToUserInfo(this DalUserInfo dalUserInfo)
         {
+            if (dalUserInfo == null)
+                return null;
             return new UserInfo()
             {
                 UserId = dalUserInfo.Id,
@@ -54,6 +60,8 @@ namespace DAL.Mappers
 
         public static DalUserInfo ToDalUserInfo(this UserInfo userInfo)
         {
+            if (userInfo == null)
+                return null;
             return new DalUserInfo()
             {
                 Id = userInfo.UserId,
@@ -71,6 +79,8 @@ namespace DAL.Mappers
         #region Role Mappers
         public static Role ToRole(this DalRole dalRole)
         {
+            if (dalRole == null)
+                return null;
             return new Role()
             {
                 Id = dalRole.Id,
@@ -80,6 +90,8 @@ namespace DAL.Mappers
 
         public static DalRole ToDalRole(this Role role)
         {
+            if (role == null)
+                return null;
             return new DalRole()
             {
                 Id = role.Id,
@@ -91,6 +103,8 @@ namespace DAL.Mappers
         #region Section Mappers
         public static Section ToSection(this DalSection dalSection)
         {
+            if (dalSection == null)
+                return null;
             return new Section()
             {
                 Id = dalSection.Id,
@@ -101,6 +115,8 @@ namespace DAL.Mappers
 
         public static DalSection ToDalSection(this Section section)
         {
+            if (section == null)
+                return null;
             return new DalSection()
             {
                 Id = section.Id,
@@ -145,6 +161,8 @@ namespace DAL.Mappers
         #region Comment Mappers
         public static Comment ToComment(this DalComment dalComment)
         {
+            if (dalComment == null)
+                return null;
             return new Comment()
             {
                 Id = dalComment.Id,
@@ -157,6 +175,8 @@ namespace DAL.Mappers
 
         public static DalComment ToDalComment(this Comment comment)
         {
+            if (comment == null)
+                return null;
             return new DalComment()
             {
                 Id = comment.Id,
@@ -171,6 +191,8 @@ namespace DAL.Mappers
         #region TopicVote Mappers
         public static TopicVote ToTopicVote(this DalTopicVote dalVote)
         {
+            if (dalVote == null)
+                return null;
             return new TopicVote()
             {
                 UserId = dalVote.UserId,
@@ -181,6 +203,8 @@ namespace DAL.Mappers
 
         public static DalTopicVote ToDalTopicVote(this TopicVote vote)
         {
+            if (void == null)
+                return null;
             return new DalTopicVote()
             {
                 UserId = vote.UserId,
@@ -194,6 +218,8 @@ namespace DAL.Mappers
         #region CommentVote Mappers
         public static CommentVote ToCommentVote(this DalCommentVote dalCommentVote)
         {
+            if (dalCommentVote == null)
+                return null;
             return new CommentVote()
             {
                 UserId = dalCommentVote.UserId,
@@ -204,6 +230,8 @@ namespace DAL.Mappers
 
         public static DalCommentVote ToDalCommentVote(this CommentVote commentVote)
         {
+            if (commentVote == null)
+                return null;
             return new DalCommentVote()
             {
                 UserId = commentVote.UserId,
@@ -217,6 +245,8 @@ namespace DAL.Mappers
         #region LogMessage Mappers
         public static LogMessage ToLogMessage(this DalLogMessage dalLogMessage)
         {
+            if (dalLogMessage == null)
+                return null;
             return new LogMessage()
             {
                 Id = dalLogMessage.Id,
@@ -228,6 +258,8 @@ namespace DAL.Mappers
 
         public static DalLogMessage ToDalLogMessage(this LogMessage logMessage)
         {
+            if (logMessage == null)
+                return null;
             return new DalLogMessage()
             {
                 Id = logMessage.Id,
