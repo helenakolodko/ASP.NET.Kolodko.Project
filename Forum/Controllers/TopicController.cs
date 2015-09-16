@@ -57,8 +57,7 @@ namespace Forum.Controllers
             var sections = sectionService.GetAllEntities()
                 .Select(s => new { Id = s.Id, Name = s.Name });
             ViewBag.Sections = new SelectList(sections, "Id", "Name");
-            TopicCreateViewModel viewModel = new TopicCreateViewModel();
-            return View(viewModel);
+            return View();
         }
 
         [HttpPost]
@@ -84,33 +83,48 @@ namespace Forum.Controllers
             }
             catch(Exception e)
             {
-                logger.Error("Topic/Details/id error", e);
+                logger.Error(e.Message, e);
+                return View("Error");
             }
             return View();
         }
 
         [Authorize]
+        // only for the author admins and topic moderators
         public ActionResult Edit(int id)
         {
-            return View();
+            TopicEntity topic = topicService.GetEntity(id);
+            if (topic == null)
+	        {
+		        return View("Error");
+	        }
+            TopicEditViewModel viewModel = new TopicEditViewModel() { Name = topic.Name, Text = topic.Text };
+            return View(viewModel);
         }
 
 
         [HttpPost]
         [Authorize]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, TopicEditViewModel viewModel)
         {
             try
             {
-                // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    TopicEntity topic = topicService.GetEntity(id);
+                    topic.Name = viewModel.Name;
+                    topic.Text = viewModel.Text;
+                    topicService.Update(topic);
+                    return RedirectToAction("Index");
+                }
             }
-            catch
+            catch (Exception e)
             {
-                return View();
+                logger.Error(e.Message, e);
+                return View("Error");
             }
+            return View();
         }
 
 

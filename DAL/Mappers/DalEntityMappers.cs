@@ -113,6 +113,8 @@ namespace DAL.Mappers
         #region Topic Mappers
         public static Topic ToTopic(this DalTopic dalTopic)
         {
+            if (dalTopic == null)
+                return null;
             return new Topic()
             {
                 Id = dalTopic.Id,
@@ -126,6 +128,8 @@ namespace DAL.Mappers
 
         public static DalTopic ToDalTopic(this Topic topic)
         {
+            if (topic == null)
+                return null;
             return new DalTopic()
             {
                 Id = topic.Id,

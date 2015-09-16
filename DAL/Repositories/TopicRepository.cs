@@ -58,7 +58,6 @@ namespace DAL.Repositories
         {
             var ormTopic = entity.ToTopic();
             context.Set<Topic>().Add(ormTopic);
-            context.SaveChanges();
             return ormTopic.Id;
         }
 
@@ -70,6 +69,7 @@ namespace DAL.Repositories
         public void Update(DalTopic entity)
         {
             Topic ormTopic = entity.ToTopic();
+            context.Set<Topic>().Attach(ormTopic);
             context.Entry(ormTopic).State = EntityState.Modified;
         }
     }

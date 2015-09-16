@@ -13,13 +13,10 @@ namespace Log
     public class CustomTarget: TargetWithLayout
     {
         private readonly IService<LogMessageEntity> service;
-
-        [RequiredParameter]
-        public DateTime Time { get; set; }
+        private static IKernel kernel = new StandardKernel(new NinjectDependencyResolver());
 
         public CustomTarget ()
 	    {
-            IKernel kernel = new StandardKernel(new NinjectDependencyResolver());
             this.service = kernel.Get<IService<LogMessageEntity>>();
 	    }
 
@@ -27,7 +24,7 @@ namespace Log
         {
             string logMessage = this.Layout.Render(info);
 
-            service.Create(new LogMessageEntity() { Message = logMessage, Level = info.Level.Name, TimeOccured = Time });
+            service.Create(new LogMessageEntity() { Message = logMessage, Level = info.Level.Name, TimeOccured = DateTime.Now });
         }
     }
 }

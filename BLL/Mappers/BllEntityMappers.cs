@@ -113,6 +113,8 @@ namespace BLL.Mappers
         #region Topic Mappers
         public static DalTopic ToDalTopic(this TopicEntity topicEntity)
         {
+            if (topicEntity == null)
+                return null;
             return new DalTopic()
             {
                 Id = topicEntity.Id,
@@ -126,6 +128,8 @@ namespace BLL.Mappers
 
         public static TopicEntity ToBllTopic(this DalTopic dalTopic)
         {
+            if (dalTopic == null)
+                return null;
             return new TopicEntity()
             {
                 Id = dalTopic.Id,

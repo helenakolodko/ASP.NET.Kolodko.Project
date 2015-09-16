@@ -162,8 +162,8 @@
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
     <Compile Include="ViewModels\Section\SectionViewModel.cs" />
-    <Compile Include="ViewModels\Section\SectionSelectViewModel.cs" />
     <Compile Include="ViewModels\Section\SectionHeaderViewModel.cs" />
+    <Compile Include="ViewModels\Topic\TopicEditViewModel.cs" />
     <Compile Include="ViewModels\Topic\TopicCreateViewModel.cs" />
     <Compile Include="ViewModels\Topic\TopicInfoViewModel.cs" />
     <Compile Include="ViewModels\Topic\TopicViewModel.cs" />
@@ -300,6 +300,7 @@
     <Content Include="Views\Shared\_TopicList.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Raiting.cshtml" />
+    <Content Include="Views\Topic\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL.Interface\BLL.Interface.csproj">

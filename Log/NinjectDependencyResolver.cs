@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using Ninject;
+using Ninject.Web.Common;
 using Ninject.Modules;
 using BLL.Interface.Entities;
 using BLL.Interface;
@@ -18,8 +19,8 @@ namespace Log
     {
         public override void Load()
         {
-            Bind<IUnitOfWork>().To<UnitOfWork>();
-            Bind<DbContext>().To<ForumContext>();
+            Bind<IUnitOfWork>().To<UnitOfWork>().InRequestScope();
+            Bind<DbContext>().To<ForumContext>().InRequestScope();
             Bind<IService<LogMessageEntity>>().To<LogMessageService>();
             Bind<IRepository<DalLogMessage>>().To<LogMessageRepository>();
         }
