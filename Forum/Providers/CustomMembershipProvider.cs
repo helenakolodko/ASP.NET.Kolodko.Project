@@ -9,6 +9,7 @@ using BLL.Interface;
 
 namespace Forum.Providers
 {
+    // TODO: change email to login, i.e. email or username
     public class CustomMembershipProvider : MembershipProvider
     {
         private IUserService userService;
@@ -35,12 +36,6 @@ namespace Forum.Providers
                 Password = Crypto.HashPassword(password),
                 RegistrationDate = DateTime.Now,
             };
-
-            //var role = context.Roles.FirstOrDefault(r => r.Name == "user");
-            //if (role != null)
-            //{
-            //    user.RoleId = role.Id;
-            //}
 
             userService.Create(user);
             membershipUser = GetUser(email, false);

@@ -3,96 +3,87 @@ using System.Linq;
 using System.Web.Helpers;
 using System.Web.Security;
 using Forum.ViewModels;
+using BLL.Interface;
+using BLL.Interface.Entities;
 
 namespace Forum.Providers
 {
-    //public class CustomRoleProvider : RoleProvider
-    //{
-    //    public override bool IsUserInRole(string email, string roleName)
-    //    {
-    //        using (var context = new UserContext())
-    //        {
-    //            User user = (from u in context.Users
-    //                         where u.Email == email
-    //                         select u).FirstOrDefault();
+    public class CustomRoleProvider : RoleProvider
+    {
+        private readonly IRoleService roleService;
+        private readonly IUserService userService;
 
-    //            if (user == null) return false;
+        public CustomRoleProvider()
+        {
+            this.roleService = (IRoleService)System.Web.Mvc.DependencyResolver
+                .Current.GetService(typeof(IRoleService));
+            this.userService = (IUserService)System.Web.Mvc.DependencyResolver
+                .Current.GetService(typeof(IUserService));
+        }
 
-    //            Role userRole = context.Roles.Find(user.RoleId);
+        public override bool IsUserInRole(string login, string roleName)
+        {
+            string[] roles = GetRolesForUser(login);
+            for (int i = 0; i < roles.Length; i++)
+			{
+                if (roleName.Equals(roleName, StringComparison.InvariantCultureIgnoreCase))
+                    return true;
+			}
+            return false;
+        }
 
-    //            if (userRole != null && userRole.Name == roleName)
-    //            {
-    //                return true;
-    //            }
+        public override string[] GetRolesForUser(string login)
+        {
+            string[] roles = {};
+            UserEntity user = userService.GetByLogin(login);
+            if (user != null)
+	        {
+                roles = roleService.GetRolesForUser(user.Id).Select(role => role.Name).ToArray();
+	        }
+            return roles;
+        }
 
-    //            return false;
-    //        }
-    //    }
+        public override void CreateRole(string roleName)
+        {
+            var newRole = new RoleEntity() { Name = roleName };
+            roleService.Create(newRole);
+        }
 
-    //    public override string[] GetRolesForUser(string email)
-    //    {
-    //        using (var context = new UserContext())
-    //        {
-    //            var roles = new string[] { };
-    //            var user = context.Users.FirstOrDefault(u => u.Email == email);
+        public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
+        {
+            throw new NotImplementedException();
+        }
 
-    //            if (user == null) return roles;
+        public override bool RoleExists(string roleName)
+        {
+            throw new NotImplementedException();
+        }
 
-    //            var userRole = user.Role;
+        public override void AddUsersToRoles(string[] usernames, string[] roleNames)
+        {
+            throw new NotImplementedException();
+        }
 
-    //            if (userRole != null)
-    //            {
-    //                roles = new string[] { userRole.Name };
-    //            }
-    //            return roles;
-    //        }
-    //    }
+        public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
+        {
+            throw new NotImplementedException();
+        }
 
-    //    public override void CreateRole(string roleName)
-    //    {
-    //        var newRole = new Role() { Name = roleName };
-    //        using (var context = new UserContext())
-    //        {
-    //            context.Roles.Add(newRole);
-    //            context.SaveChanges();
-    //        }
-    //    }
+        public override string[] GetUsersInRole(string roleName)
+        {
+            throw new NotImplementedException();
+        }
 
-    //    public override bool DeleteRole(string roleName, bool throwOnPopulatedRole)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        public override string[] GetAllRoles()
+        {
+            throw new NotImplementedException();
+        }
 
-    //    public override bool RoleExists(string roleName)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
+        public override string[] FindUsersInRole(string roleName, string usernameToMatch)
+        {
+            throw new NotImplementedException();
+        }
 
-    //    public override void AddUsersToRoles(string[] usernames, string[] roleNames)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override void RemoveUsersFromRoles(string[] usernames, string[] roleNames)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override string[] GetUsersInRole(string roleName)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override string[] GetAllRoles()
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override string[] FindUsersInRole(string roleName, string usernameToMatch)
-    //    {
-    //        throw new NotImplementedException();
-    //    }
-
-    //    public override string ApplicationName { get; set; }
-    //}
+        public override string ApplicationName { get; set; }
+    }
 }

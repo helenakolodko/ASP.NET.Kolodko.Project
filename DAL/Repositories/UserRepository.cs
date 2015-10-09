@@ -40,7 +40,10 @@ namespace DAL.Repositories
 
         public DalUser GetByLogin(string login)
         {
-            throw new NotImplementedException();
+            var ormUser = context.Set<User>().FirstOrDefault(user => user.Email == login);
+            if (ormUser == null)
+                ormUser = context.Set<User>().FirstOrDefault(user => user.UserName == login);
+            return ormUser.ToDalUser();
         }
 
         public IEnumerable<DalRole> GetRoles(int id)

@@ -10,5 +10,7 @@ namespace BLL.Interface
     public interface IRoleService: IService<RoleEntity>
     {
         IEnumerable<UserEntity> GetUsers(int id);
+        IEnumerable<RoleEntity> GetRolesForUser(int userId);
+
     }
 }

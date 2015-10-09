@@ -14,11 +14,13 @@ namespace BLL.Services
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IRoleRepository roleRepository;
+        private readonly IUserRepository userRepository;
 
-        public RoleService(IUnitOfWork unitOfWork, IRoleRepository repository)
+        public RoleService(IUnitOfWork unitOfWork, IRoleRepository repository, IUserRepository userRepository)
         {
             this.unitOfWork = unitOfWork;
             this.roleRepository = repository;
+            this.userRepository = userRepository;
         }
 
         public RoleEntity GetEntity(int id)
@@ -59,6 +61,12 @@ namespace BLL.Services
         public IEnumerable<RoleEntity> GetByPredicate(Expression<Func<RoleEntity, bool>> predicate)
         {
             throw new NotImplementedException();
+        }
+
+
+        public IEnumerable<RoleEntity> GetRolesForUser(int userId)
+        {
+            return userRepository.GetRoles(userId).Select(role => role.ToBllRole());
         }
     }
 }

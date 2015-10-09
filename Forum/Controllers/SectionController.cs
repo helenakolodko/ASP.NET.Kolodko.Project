@@ -50,12 +50,14 @@ namespace Forum.Controllers
             return View(model);
         }
 
+        [Authorize(Roles="admin,sectionmoderator")]
         public ActionResult Create()
         {
             return View();
         }
 
         [HttpPost]
+        [Authorize(Roles = "admin,sectionmoderator")]
         public ActionResult Create(SectionUpdateViewModel viewModel)
         {
             try
@@ -79,6 +81,7 @@ namespace Forum.Controllers
             return View();
         }
 
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id)
         {
             var section = sectionService.GetEntity(id);
@@ -94,10 +97,10 @@ namespace Forum.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Section/Edit/5
+        
 
         [HttpPost]
+        [Authorize(Roles = "admin")]
         public ActionResult Edit(int id, SectionUpdateViewModel viewModel)
         {
             try
@@ -121,18 +124,15 @@ namespace Forum.Controllers
             }
         }
 
-        //
-        // GET: /Section/Delete/5
-
+        [Authorize(Roles = "admin,sectionmoderator")]
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        //
-        // POST: /Section/Delete/5
 
         [HttpPost]
+        [Authorize(Roles = "admin,sectionmoderator")]
         public ActionResult Delete(int id, FormCollection collection)
         {
             try

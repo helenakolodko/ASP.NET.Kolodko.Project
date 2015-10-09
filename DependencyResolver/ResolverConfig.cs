@@ -40,29 +40,29 @@ namespace DependencyResolver
                 kernel.Bind<DbContext>().To<ForumContext>().InSingletonScope();
             }
 
-            kernel.Bind<IUserService>().To<UserService>();
-            kernel.Bind<IUserRepository>().To<UserRepository>();
+            kernel.Bind<IUserService>().To<UserService>().InRequestScope();
+            kernel.Bind<IUserRepository>().To<UserRepository>().InRequestScope();
 
-            kernel.Bind<IService<UserInfoEntity>>().To<UserInfoService>();
-            kernel.Bind<IRepository<DalUserInfo>>().To<UserInfoRepository>();
+            kernel.Bind<IService<UserInfoEntity>>().To<UserInfoService>().InRequestScope();
+            kernel.Bind<IRepository<DalUserInfo>>().To<UserInfoRepository>().InRequestScope();
 
-            kernel.Bind<IRoleService>().To<RoleService>();
-            kernel.Bind<IRoleRepository>().To<RoleRepository>();
+            kernel.Bind<IRoleService>().To<RoleService>().InRequestScope();
+            kernel.Bind<IRoleRepository>().To<RoleRepository>().InRequestScope();
 
-            kernel.Bind<IService<SectionEntity>>().To<SectionService>();
-            kernel.Bind<IRepository<DalSection>>().To<SectionRepository>();
+            kernel.Bind<IService<SectionEntity>>().To<SectionService>().InRequestScope();
+            kernel.Bind<IRepository<DalSection>>().To<SectionRepository>().InRequestScope();
 
-            kernel.Bind<IService<LogMessageEntity>>().To<LogMessageService>();
-            kernel.Bind<IRepository<DalLogMessage>>().To<LogMessageRepository>();
+            kernel.Bind<IService<LogMessageEntity>>().To<LogMessageService>().InRequestScope();
+            kernel.Bind<IRepository<DalLogMessage>>().To<LogMessageRepository>().InRequestScope();
 
-            kernel.Bind<IServiceWithRaiting<CommentEntity>>().To<CommentService>();
-            kernel.Bind<IRepository<DalComment>>().To<CommentRepository>();
+            kernel.Bind<IServiceWithRaiting<CommentEntity>>().To<CommentService>().InRequestScope();
+            kernel.Bind<IRepository<DalComment>>().To<CommentRepository>().InRequestScope();
 
-            kernel.Bind<IServiceWithRaiting<TopicEntity>>().To<TopicService>();
-            kernel.Bind<IRepository<DalTopic>>().To<TopicRepository>();
+            kernel.Bind<IServiceWithRaiting<TopicEntity>>().To<TopicService>().InRequestScope();
+            kernel.Bind<IRepository<DalTopic>>().To<TopicRepository>().InRequestScope();
 
-            kernel.Bind<IVoteRepository<DalTopicVote>>().To<TopicVoteRepository>();
-            kernel.Bind<IVoteRepository<DalCommentVote>>().To<CommentVoteRepository>();
+            kernel.Bind<IVoteRepository<DalTopicVote>>().To<TopicVoteRepository>().InRequestScope();
+            kernel.Bind<IVoteRepository<DalCommentVote>>().To<CommentVoteRepository>().InRequestScope();
 
             kernel.Bind<ILogger>().To<NLogAdapter>();
         }
