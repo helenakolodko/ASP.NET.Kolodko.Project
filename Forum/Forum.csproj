@@ -59,6 +59,9 @@
       <HintPath>..\packages\Ninject.Web.Common.3.2.3.0\lib\net45-full\Ninject.Web.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Ninject.Web.Mvc">
+      <HintPath>..\packages\Ninject.MVC3.3.2.1.0\lib\net45-full\Ninject.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -161,8 +164,9 @@
     <Compile Include="ViewModels\CommentViewModel.cs" />
     <Compile Include="ViewModels\Account\LoginViewModel.cs" />
     <Compile Include="ViewModels\Account\RegisterViewModel.cs" />
-    <Compile Include="ViewModels\Section\SectionViewModel.cs" />
+    <Compile Include="ViewModels\Section\SectionUpdateViewModel.cs" />
     <Compile Include="ViewModels\Section\SectionHeaderViewModel.cs" />
+    <Compile Include="ViewModels\Section\SectionViewModel.cs" />
     <Compile Include="ViewModels\Topic\TopicEditViewModel.cs" />
     <Compile Include="ViewModels\Topic\TopicCreateViewModel.cs" />
     <Compile Include="ViewModels\Topic\TopicInfoViewModel.cs" />
@@ -301,6 +305,10 @@
     <Content Include="Views\Shared\EditorTemplates\MultilineText.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\Raiting.cshtml" />
     <Content Include="Views\Topic\Edit.cshtml" />
+    <Content Include="Views\Section\Index.cshtml" />
+    <Content Include="Views\Section\Create.cshtml" />
+    <Content Include="Views\Section\Details.cshtml" />
+    <Content Include="Views\Section\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BLL.Interface\BLL.Interface.csproj">

@@ -68,7 +68,12 @@ namespace DAL.Repositories
 
         public void Update(DalTopic entity)
         {
-            Topic ormTopic = entity.ToTopic();
+            Topic ormTopic = context.Set<Topic>().FirstOrDefault(topic => topic.Id == entity.Id);
+            ormTopic.Name = entity.Name;
+            ormTopic.Text = entity.Text;
+            ormTopic.SectionId = entity.SectionId;
+            ormTopic.AuthorId = entity.UserId;
+            ormTopic.DateAdded = entity.DateAdded;
             context.Set<Topic>().Attach(ormTopic);
             context.Entry(ormTopic).State = EntityState.Modified;
         }

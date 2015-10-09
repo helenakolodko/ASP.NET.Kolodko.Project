@@ -36,11 +36,14 @@ namespace Forum.Controllers
             var latestTopics = from topic in topicService.GetAllEntities()
                                select new TopicInfoViewModel
                                {
+                                   Id = topic.Id,
                                    Name = topic.Name,
                                    DateAdded = topic.DateAdded,
                                    Raiting = topicService.GetRaiting(topic),
-                                   //Author = userService.GetEntity(topic.UserId),
-                                   //Section = sectionService.GetEntity(topic.SectionId),
+                                   AuthorId = topic.UserId,
+                                   Author = userService.GetEntity(topic.UserId).Username,
+                                   SectionId = topic.SectionId ?? 0 ,
+                                   Section = sectionService.GetEntity(topic.SectionId ?? 0).Name,
                                };
             return View(latestTopics);
         }
@@ -57,7 +60,8 @@ namespace Forum.Controllers
             var sections = sectionService.GetAllEntities()
                 .Select(s => new { Id = s.Id, Name = s.Name });
             ViewBag.Sections = new SelectList(sections, "Id", "Name");
-            return View();
+            TopicCreateViewModel viewModel = new TopicCreateViewModel();
+            return View(viewModel);
         }
 
         [HttpPost]
@@ -81,7 +85,7 @@ namespace Forum.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch(Exception e)
+            catch(InvalidOperationException e)
             {
                 logger.Error(e.Message, e);
                 return View("Error");
@@ -119,7 +123,7 @@ namespace Forum.Controllers
                     return RedirectToAction("Index");
                 }
             }
-            catch (Exception e)
+            catch (InvalidOperationException e)
             {
                 logger.Error(e.Message, e);
                 return View("Error");

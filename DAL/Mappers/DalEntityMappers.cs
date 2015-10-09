@@ -203,7 +203,7 @@ namespace DAL.Mappers
 
         public static DalTopicVote ToDalTopicVote(this TopicVote vote)
         {
-            if (void == null)
+            if (vote == null)
                 return null;
             return new DalTopicVote()
             {

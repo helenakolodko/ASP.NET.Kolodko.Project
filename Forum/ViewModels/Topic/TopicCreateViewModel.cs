@@ -9,7 +9,7 @@ namespace Forum.ViewModels
     public class TopicCreateViewModel
     {
         [Required]
-        [Display(Name = "Topic Name")]
+        [Display(Name = "Topic Name")] 
         public string Name { get; set; }
 
         [Required]

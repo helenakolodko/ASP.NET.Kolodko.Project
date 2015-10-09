@@ -54,7 +54,6 @@ namespace DAL.Repositories
         {
             var log = entity.ToLogMessage();
             context.Set<LogMessage>().Add(log);
-            context.SaveChanges();
             return log.Id;
         }
 

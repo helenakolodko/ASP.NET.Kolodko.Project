@@ -10,12 +10,12 @@ using HelperModule;
 
 namespace BLL.Services
 {
-    public class UserService : IService<UserEntity>
+    public class UserService : IUserService
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly IRepository<DalUser> userRepository;
+        private readonly IUserRepository userRepository;
 
-        public UserService(IUnitOfWork unitOfWork, IRepository<DalUser> repository)
+        public UserService(IUnitOfWork unitOfWork, IUserRepository repository)
         {
             this.unitOfWork = unitOfWork;
             this.userRepository = repository;
@@ -29,6 +29,16 @@ namespace BLL.Services
         public IEnumerable<UserEntity> GetAllEntities()
         {
             return userRepository.GetAll().Select(user => user.ToBllUser());
+        }
+
+        public UserEntity GetByLogin(string login)
+        {
+            return userRepository.GetByLogin(login).ToBllUser();
+        }
+
+        public IEnumerable<RoleEntity> GetRoles(int id)
+        {
+            return userRepository.GetRoles(id).Select(role => role.ToBllRole());
         }
 
         public IEnumerable<UserEntity> GetByPredicate(System.Linq.Expressions.Expression<Func<UserEntity, bool>> predicate)

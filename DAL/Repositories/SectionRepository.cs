@@ -52,7 +52,6 @@ namespace DAL.Repositories
         {
             var ormSection = entity.ToSection();
             context.Set<Section>().Add(ormSection);
-            context.SaveChanges();
             return ormSection.Id;
         }
 
@@ -63,7 +62,9 @@ namespace DAL.Repositories
 
         public void Update(DalSection entity)
         {
-            Section ormSection = entity.ToSection();
+            Section ormSection = context.Set<Section>().FirstOrDefault(section => section.Id == entity.Id);
+            ormSection.Info = entity.Info;
+            entity.Name = entity.Name;
             context.Entry(ormSection).State = EntityState.Modified;
         }
     }

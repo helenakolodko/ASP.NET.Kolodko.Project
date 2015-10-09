@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 
 namespace DAL.Repositories
 {
-    public class UserRepository : IRepository<DalUser>
+    public class UserRepository : IUserRepository
     {
         private readonly DbContext context;
 
@@ -38,6 +38,17 @@ namespace DAL.Repositories
             return ormUser.ToDalUser();
         }
 
+        public DalUser GetByLogin(string login)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<DalRole> GetRoles(int id)
+        {
+            var ormUser = context.Set<User>().FirstOrDefault(user => user.Id == id);
+            return ormUser.Roles.Select(role => role.ToDalRole());
+        }
+
         public IEnumerable<DalUser> GetByPredicate(Expression<Func<DalUser, bool>> predicate)
         {
             var expression = CustomExpretionVisitor<User, DalUser>.Tranform(predicate);
@@ -56,14 +67,12 @@ namespace DAL.Repositories
         {
             var user = entity.ToUser();
             context.Set<User>().Add(user);
-            context.SaveChanges();
             return user.Id;
         }
 
         public void Delete(DalUser entity)
         {
             User ormUser = entity.ToUser();
-
             context.Set<User>().Remove(ormUser);
         }
 

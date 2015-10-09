@@ -56,7 +56,6 @@ namespace DAL.Repositories
         {
             var ormComment = entity.ToComment();
             context.Set<Comment>().Add(ormComment);
-            context.SaveChanges();
             return ormComment.Id;
         }
 

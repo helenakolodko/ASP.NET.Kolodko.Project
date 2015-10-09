@@ -10,9 +10,9 @@ namespace Forum.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly IService<UserEntity> service;
+        private readonly IUserService service;
 
-        public AccountController(IService<UserEntity> service)
+        public AccountController(IUserService service)
         {
             this.service = service;
         }

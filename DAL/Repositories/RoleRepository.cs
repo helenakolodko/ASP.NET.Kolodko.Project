@@ -10,7 +10,7 @@ using ORM.Entities;
 
 namespace DAL.Repositories
 {
-    public class RoleRepository : IRepository<DalRole>
+    public class RoleRepository : IRoleRepository
     {
         private readonly DbContext context;
 
@@ -35,6 +35,12 @@ namespace DAL.Repositories
             return ormRole.ToDalRole();
         }
 
+        public IEnumerable<DalUser> GetUsers(int id)
+        {
+            var ormUser = context.Set<Role>().FirstOrDefault(role => role.Id == id);
+            return ormUser.Users.Select(user => user.ToDalUser());
+        }
+
         public IEnumerable<DalRole> GetByPredicate(System.Linq.Expressions.Expression<Func<DalRole, bool>> predicate)
         {
             var expression = CustomExpretionVisitor<Role, DalRole>.Tranform(predicate);
@@ -50,7 +56,6 @@ namespace DAL.Repositories
         {
             var ormRole = entity.ToRole();
             context.Set<Role>().Add(ormRole);
-            context.SaveChanges();
             return ormRole.Id;
         }
 

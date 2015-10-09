@@ -3,76 +3,121 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BLL.Interface.Entities;
+using BLL.Interface;
+using Log.Interface;
+using Forum.ViewModels;
 
 namespace Forum.Controllers
 {
     public class SectionController : Controller
     {
-        //
-        // GET: /Section/
+        private readonly IService<SectionEntity> sectionService;
+        private readonly ILogger logger;
+
+        public SectionController(IService<SectionEntity> sectionService,
+                               ILogger logger)
+        {
+            this.sectionService = sectionService;
+            this.logger = logger;
+        }
 
         public ActionResult Index()
         {
-            return View();
+            var sections = from section in sectionService.GetAllEntities()
+                           select new SectionViewModel
+                           {
+                               Id = section.Id,
+                               Name = section.Name,
+                               Description = section.Info
+                           };
+            return View(sections);
         }
-
-        //
-        // GET: /Section/Details/5
 
         public ActionResult Details(int id)
         {
-            return View();
+            var section = sectionService.GetEntity(id);
+            if (section == null)
+            {
+                return View("Error");
+            }
+            SectionViewModel model = new SectionViewModel()
+            {
+                Id = section.Id,
+                Name = section.Name,
+                Description = section.Info
+            };
+            return View(model);
         }
-
-        //
-        // GET: /Section/Create
 
         public ActionResult Create()
         {
             return View();
         }
 
-        //
-        // POST: /Section/Create
-
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(SectionUpdateViewModel viewModel)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                if (ModelState.IsValid)
+                {
+                    SectionEntity section = new SectionEntity()
+                    {
+                        Name = viewModel.Name,
+                        Info = viewModel.Description,
+                    };
+                    sectionService.Create(section);
+                    return RedirectToAction("Index");
+                }
             }
-            catch
+            catch (InvalidOperationException e)
             {
-                return View();
+                logger.Error(e.Message, e);
+                return View("Error");
             }
+            return View();
         }
-
-        //
-        // GET: /Section/Edit/5
 
         public ActionResult Edit(int id)
         {
-            return View();
+            var section = sectionService.GetEntity(id);
+            if (section == null)
+            {
+                return View("Error");
+            }            
+            SectionUpdateViewModel model = new SectionUpdateViewModel()
+            {
+                Name = section.Name,
+                Description = section.Info
+            };
+            return View(model);
         }
 
         //
         // POST: /Section/Edit/5
 
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult Edit(int id, SectionUpdateViewModel viewModel)
         {
             try
             {
-                // TODO: Add update logic here
-
+                if (ModelState.IsValid)
+                {
+                    SectionEntity section = new SectionEntity()
+                    {
+                        Id = id,
+                        Name = viewModel.Name,
+                        Info = viewModel.Description,
+                    };
+                    sectionService.Update(section);
+                    return RedirectToAction("Index");
+                }
                 return RedirectToAction("Index");
             }
             catch
             {
-                return View();
+                return View(viewModel);
             }
         }
 

@@ -1,0 +1,18 @@
+﻿@model Forum.ViewModels.SectionViewModel
+
+@{
+    ViewBag.Title = "Section Details";
+}
+
+<div class="container content">
+    <div class="col-md-offset-2 col-md-6">
+        <div class="page-header">
+            <h2>@Html.DisplayFor(model => model.Name)</h2>
+            @Html.ActionLink("Edit section", "Edit", new { id = Model.Id }, new { @class = "btn btn-default" })
+        </div>
+
+        <p>
+            @Html.DisplayFor(model => model.Description)
+        </p>
+    </div>
+</div>

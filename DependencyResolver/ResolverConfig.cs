@@ -40,14 +40,14 @@ namespace DependencyResolver
                 kernel.Bind<DbContext>().To<ForumContext>().InSingletonScope();
             }
 
-            kernel.Bind<IService<UserEntity>>().To<UserService>();
-            kernel.Bind<IRepository<DalUser>>().To<UserRepository>();
+            kernel.Bind<IUserService>().To<UserService>();
+            kernel.Bind<IUserRepository>().To<UserRepository>();
 
             kernel.Bind<IService<UserInfoEntity>>().To<UserInfoService>();
             kernel.Bind<IRepository<DalUserInfo>>().To<UserInfoRepository>();
 
-            kernel.Bind<IService<RoleEntity>>().To<RoleService>();
-            kernel.Bind<IRepository<DalRole>>().To<RoleRepository>();
+            kernel.Bind<IRoleService>().To<RoleService>();
+            kernel.Bind<IRoleRepository>().To<RoleRepository>();
 
             kernel.Bind<IService<SectionEntity>>().To<SectionService>();
             kernel.Bind<IRepository<DalSection>>().To<SectionRepository>();

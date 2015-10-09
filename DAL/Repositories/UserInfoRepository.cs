@@ -62,7 +62,6 @@ namespace DAL.Repositories
         {
             UserInfo userInfo = entity.ToUserInfo();
             context.Set<UserInfo>().Add(userInfo);
-            context.SaveChanges();
             return userInfo.UserId;
         }
 

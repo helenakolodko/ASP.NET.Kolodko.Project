@@ -10,12 +10,12 @@ using System.Linq.Expressions;
 
 namespace BLL.Services
 {
-    public class RoleService: IService<RoleEntity>
+    public class RoleService: IRoleService
     {
         private readonly IUnitOfWork unitOfWork;
-        private readonly IRepository<DalRole> roleRepository;
+        private readonly IRoleRepository roleRepository;
 
-        public RoleService(IUnitOfWork unitOfWork, IRepository<DalRole> repository)
+        public RoleService(IUnitOfWork unitOfWork, IRoleRepository repository)
         {
             this.unitOfWork = unitOfWork;
             this.roleRepository = repository;
@@ -29,6 +29,11 @@ namespace BLL.Services
         public IEnumerable<RoleEntity> GetAllEntities()
         {
             return roleRepository.GetAll().Select(role => role.ToBllRole()); 
+        }
+
+        public IEnumerable<UserEntity> GetUsers(int id)
+        {
+            return roleRepository.GetUsers(id).Select(user => user.ToBllUser());
         }
 
         public int Create(RoleEntity entity)

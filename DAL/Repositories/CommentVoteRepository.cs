@@ -51,19 +51,16 @@ namespace DAL.Repositories
         public void Add(DalCommentVote entity)
         {
             context.Set<CommentVote>().Add(entity.ToCommentVote());
-            context.SaveChanges();
         }
 
         public void Delete(DalCommentVote entity)
         {
             context.Set<CommentVote>().Remove(entity.ToCommentVote());
-            context.SaveChanges();
         }
 
         public void Update(DalCommentVote entity)
         {
             context.Entry(entity.ToCommentVote()).State = EntityState.Modified;
-            context.SaveChanges();
         }
 
 

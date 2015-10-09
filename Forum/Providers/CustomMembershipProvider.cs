@@ -11,12 +11,12 @@ namespace Forum.Providers
 {
     public class CustomMembershipProvider : MembershipProvider
     {
-        private IService<UserEntity> userService;
+        private IUserService userService;
 
         public CustomMembershipProvider()
         {
-            this.userService = (IService<UserEntity>)System.Web.Mvc.DependencyResolver
-                .Current.GetService(typeof(IService<UserEntity>));
+            this.userService = (IUserService)System.Web.Mvc.DependencyResolver
+                .Current.GetService(typeof(IUserService));
         }
 
         public MembershipUser CreateUser(string username, string email, string password)
