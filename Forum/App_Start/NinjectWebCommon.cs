@@ -1,6 +1,7 @@
 ﻿[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Forum.App_Start.NinjectWebCommon), "Start")]
 [assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Forum.App_Start.NinjectWebCommon), "Stop")]
 
+
 namespace Forum.App_Start
 {
     using System;
@@ -10,7 +11,8 @@ namespace Forum.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Ninject.Web.Mvc;
+    using System.Web.Security;
+    using Forum.Infrastructure;
 
     public static class NinjectWebCommon 
     {
@@ -63,6 +65,8 @@ namespace Forum.App_Start
         private static void RegisterServices(IKernel kernel)
         {
             System.Web.Mvc.DependencyResolver.SetResolver(new Infrastructure.NinjectDependencyResolver(kernel));
-        }        
+
+        }
+ 
     }
 }

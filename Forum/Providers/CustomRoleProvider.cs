@@ -10,19 +10,18 @@ namespace Forum.Providers
 {
     public class CustomRoleProvider : RoleProvider
     {
-        private readonly IRoleService roleService;
-        private readonly IUserService userService;
-
-        public CustomRoleProvider()
+        private IRoleService roleService 
         {
-            this.roleService = (IRoleService)System.Web.Mvc.DependencyResolver
-                .Current.GetService(typeof(IRoleService));
-            this.userService = (IUserService)System.Web.Mvc.DependencyResolver
-                .Current.GetService(typeof(IUserService));
+            get { return (IRoleService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IRoleService)); } 
         }
-
+        private IUserService userService
+        {
+            get { return (IUserService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IUserService)); }
+        }
+        
         public override bool IsUserInRole(string login, string roleName)
         {
+
             string[] roles = GetRolesForUser(login);
             for (int i = 0; i < roles.Length; i++)
 			{
@@ -45,6 +44,10 @@ namespace Forum.Providers
 
         public override void CreateRole(string roleName)
         {
+            //var roleService = (IRoleService)System.Web.Mvc.DependencyResolver
+            //    .Current.GetService(typeof(IRoleService));
+            //var userService = (IUserService)System.Web.Mvc.DependencyResolver
+            //    .Current.GetService(typeof(IUserService));
             var newRole = new RoleEntity() { Name = roleName };
             roleService.Create(newRole);
         }

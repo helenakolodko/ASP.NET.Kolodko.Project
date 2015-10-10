@@ -6,18 +6,16 @@ using System.Web.Helpers;
 using System.Web.Security;
 using BLL.Interface.Entities;
 using BLL.Interface;
+using System.Collections.Specialized;
 
 namespace Forum.Providers
 {
     // TODO: change email to login, i.e. email or username
     public class CustomMembershipProvider : MembershipProvider
     {
-        private IUserService userService;
-
-        public CustomMembershipProvider()
+        private IUserService userService 
         {
-            this.userService = (IUserService)System.Web.Mvc.DependencyResolver
-                .Current.GetService(typeof(IUserService));
+            get { return (IUserService)System.Web.Mvc.DependencyResolver.Current.GetService(typeof(IUserService)); }
         }
 
         public MembershipUser CreateUser(string username, string email, string password)
